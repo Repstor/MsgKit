@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>MsgKit</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MimeKit" Version="2.0.5" />
+    <PackageReference Include="OpenMcdf" Version="2.2.0.1" />
+  </ItemGroup>
 
 </Project>
