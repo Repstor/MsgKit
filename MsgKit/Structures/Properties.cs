@@ -29,6 +29,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using System.Linq;
 using MsgKit.Enums;
 using MsgKit.Helpers;
 using OpenMcdf;
@@ -252,19 +253,25 @@ namespace MsgKit.Structures
         {
             if (obj == null)
                 return;
-                //throw new ArgumentNullException("mapiTag", "Obj can not be null");
+            //throw new ArgumentNullException("mapiTag", "Obj can not be null");
 
-            var data = new byte[] {};
+            var data = asBytes(mapiTag.Type, obj);
+            
+            Add(new Property(mapiTag.Id, mapiTag.Type, flags, data));
+        }
 
-            switch (mapiTag.Type)
+        private byte[] asBytes(PropertyType type, object obj)
+        {
+            var data = new byte[] { };
+            switch (type)
             {
                 case PropertyType.PT_APPTIME:
-                    var oaDate = ((DateTime) obj).ToOADate();
+                    var oaDate = ((DateTime)obj).ToOADate();
                     data = BitConverter.GetBytes(oaDate);
                     break;
 
                 case PropertyType.PT_SYSTIME:
-                    var fileTime = ((DateTime) obj).ToFileTimeUtc();
+                    var fileTime = ((DateTime)obj).ToFileTimeUtc();
                     data = BitConverter.GetBytes(fileTime);
                     break;
 
@@ -278,11 +285,11 @@ namespace MsgKit.Structures
                     break;
 
                 case PropertyType.PT_FLOAT:
-                    data = BitConverter.GetBytes((float) (int) obj);
+                    data = BitConverter.GetBytes((float)(int)obj);
                     break;
 
                 case PropertyType.PT_DOUBLE:
-                    data = BitConverter.GetBytes((double) obj);
+                    data = BitConverter.GetBytes((double)obj);
                     break;
 
                 //case PropertyType.PT_CURRENCY:
@@ -290,23 +297,33 @@ namespace MsgKit.Structures
                 //    break;
 
                 case PropertyType.PT_BOOLEAN:
-                    data = BitConverter.GetBytes((bool) obj);
+                    data = BitConverter.GetBytes((bool)obj);
                     break;
 
                 case PropertyType.PT_I8:
-                    data = BitConverter.GetBytes((long) obj);
+                    data = BitConverter.GetBytes((long)obj);
                     break;
 
                 case PropertyType.PT_UNICODE:
-                    data = Encoding.Unicode.GetBytes((string) obj);
+                    data = Encoding.Unicode.GetBytes((string)obj);
+                    break;
+                case PropertyType.PT_MV_UNICODE:
+                    var values = (string[])obj;
+                    var byteCount = BitConverter.GetBytes(values.Length);
+                    var appendableBytes = byteCount.ToList();
+                    foreach(var val in values)
+                    {
+                        appendableBytes.AddRange(asBytes(PropertyType.PT_UNICODE, val));
+                    }
+                    data = appendableBytes.ToArray();
                     break;
 
                 case PropertyType.PT_STRING8:
-                    data = Encoding.Default.GetBytes((string) obj);
+                    data = Encoding.Default.GetBytes((string)obj);
                     break;
 
                 case PropertyType.PT_CLSID:
-                    data = ((Guid) obj).ToByteArray();
+                    data = ((Guid)obj).ToByteArray();
                     break;
 
                 case PropertyType.PT_BINARY:
@@ -314,62 +331,62 @@ namespace MsgKit.Structures
                     switch (Type.GetTypeCode(obj.GetType()))
                     {
                         case TypeCode.Boolean:
-                            data = BitConverter.GetBytes((bool) obj);
+                            data = BitConverter.GetBytes((bool)obj);
                             break;
 
                         case TypeCode.Char:
-                            data = BitConverter.GetBytes((char) obj);
+                            data = BitConverter.GetBytes((char)obj);
                             break;
 
                         case TypeCode.SByte:
-                            data = BitConverter.GetBytes((sbyte) obj);
+                            data = BitConverter.GetBytes((sbyte)obj);
                             break;
 
                         case TypeCode.Byte:
-                            data = BitConverter.GetBytes((byte) obj);
+                            data = BitConverter.GetBytes((byte)obj);
                             break;
                         case TypeCode.Int16:
-                            data = BitConverter.GetBytes((short) obj);
+                            data = BitConverter.GetBytes((short)obj);
                             break;
 
                         case TypeCode.UInt16:
-                            data = BitConverter.GetBytes((uint) obj);
+                            data = BitConverter.GetBytes((uint)obj);
                             break;
 
                         case TypeCode.Int32:
-                            data = BitConverter.GetBytes((int) obj);
+                            data = BitConverter.GetBytes((int)obj);
                             break;
 
                         case TypeCode.UInt32:
-                            data = BitConverter.GetBytes((uint) obj);
+                            data = BitConverter.GetBytes((uint)obj);
                             break;
 
                         case TypeCode.Int64:
-                            data = BitConverter.GetBytes((long) obj);
+                            data = BitConverter.GetBytes((long)obj);
                             break;
 
                         case TypeCode.UInt64:
-                            data = BitConverter.GetBytes((ulong) obj);
+                            data = BitConverter.GetBytes((ulong)obj);
                             break;
 
                         case TypeCode.Single:
-                            data = BitConverter.GetBytes((float) obj);
+                            data = BitConverter.GetBytes((float)obj);
                             break;
 
                         case TypeCode.Double:
-                            data = BitConverter.GetBytes((double) obj);
+                            data = BitConverter.GetBytes((double)obj);
                             break;
 
                         case TypeCode.DateTime:
-                            data = BitConverter.GetBytes(((DateTime) obj).Ticks);
+                            data = BitConverter.GetBytes(((DateTime)obj).Ticks);
                             break;
 
                         case TypeCode.String:
-                            data = Encoding.UTF8.GetBytes((string) obj);
+                            data = Encoding.UTF8.GetBytes((string)obj);
                             break;
 
                         case TypeCode.Object:
-                            data = (byte[]) obj;
+                            data = (byte[])obj;
                             break;
 
                         default:
@@ -400,8 +417,7 @@ namespace MsgKit.Structures
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-            Add(new Property(mapiTag.Id, mapiTag.Type, flags, data));
+            return data;
         }
 
         /// <summary>

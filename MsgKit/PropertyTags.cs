@@ -2543,6 +2543,14 @@ namespace MsgKit
         }
 
         /// <summary>
+        ///     Contains the name of the person you last modified the object
+        /// </summary>
+        internal static PropertyTag PR_LAST_MODIFIER_NAME_W
+        {
+            get { return new PropertyTag(0x3FFA, PropertyType.PT_UNICODE); }
+        }
+
+        /// <summary>
         ///     Contains a bitmask of flags for message services and providers.
         /// </summary>
         internal static PropertyTag PR_RESOURCE_FLAGS

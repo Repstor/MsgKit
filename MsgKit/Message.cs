@@ -25,8 +25,12 @@
 //
 
 using System;
+using System.Linq;
 using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
 using MsgKit.Enums;
+using MsgKit.Helpers;
 using MsgKit.Streams;
 using OpenMcdf;
 
@@ -39,6 +43,20 @@ namespace MsgKit
     /// </summary>
     public class Message : IDisposable
     {
+        # region Fields
+
+        /// <summary>
+        ///     The subject of the E-mail
+        /// </summary>
+        private string _subject;
+
+        /// <summary>
+        ///     The <see cref="Regex" /> to find the prefix in a subject
+        /// </summary>
+        private static readonly Regex SubjectPrefixRegex = new Regex(@"^(\D{1,3}:\s)(.*)$");
+
+        #endregion
+
         #region Properties
         /// <summary>
         ///     The <see cref="CompoundFile" />
@@ -137,6 +155,121 @@ namespace MsgKit
         ///     The <see cref="NamedProperties"/>
         /// </summary>
         internal NamedProperties NamedProperties;
+
+        /// <summary>
+        ///     Returns or sets the UTC date and time the <see cref="Sender"/> has submitted the 
+        ///     <see cref="Message"/>
+        /// </summary>
+        /// <remarks>
+        ///     This property has to be set to UTC datetime. When not set then the current date 
+        ///     and time is used
+        /// </remarks>
+        public DateTime? SentOn { get; set; }
+
+        /// <summary>
+        ///     Returns or sets the UTC date and time the <see cref="Sender"/> has created the
+        ///     <see cref="Message"/>
+        /// </summary>
+        /// <remarks>
+        ///     This property has to be set to UTC datetime. When not set then the current date 
+        ///     and time is used
+        /// </remarks>
+        public DateTime? CreatedOn { get; set; }
+
+        /// <summary>
+        ///     Returns or sets the UTC date and time, when the message was last modified
+        /// </summary>
+        /// <remarks>
+        ///     This property has to be set to UTC datetime. When not set then the current date 
+        ///     and time is used
+        /// </remarks>
+        public DateTime? LastModifiedOn { get; set; }
+
+        /// <summary>
+        /// Name of the last user to modify the message
+        /// </summary>
+        public string LastModifiedBy { get; set; }
+
+        /// <summary>
+        ///     Returns or sets the text body of the E-mail
+        /// </summary>
+        public string BodyText { get; set; }
+
+        /// <summary>
+        ///     Returns or sets the html body of the E-mail
+        /// </summary>
+        public string BodyHtml { get; set; }
+
+        /// <summary>
+        ///     The compressed RTF body part
+        /// </summary>
+        /// <remarks>
+        ///     When not set then the RTF is generated from <see cref="BodyHtml"/> (when this property is set)
+        /// </remarks>
+        public string BodyRtf { get; set; }
+
+        /// <summary>
+        ///     Returns or set to <c>true</c> when <see cref="BodyRtf"/> is compressed
+        /// </summary>
+        public bool BodyRtfCompressed { get; set; }
+
+        /// <summary>
+        ///     Returns the subject prefix of the E-mail
+        /// </summary>
+        public string SubjectPrefix { get; private set; }
+
+        /// <summary>
+        ///     Returns or sets the subject of the E-mail
+        /// </summary>
+        public string Subject
+        {
+            get { return _subject; }
+            set
+            {
+                _subject = value;
+                SetSubject();
+            }
+        }
+
+        /// <summary>
+        ///     Returns the normalized subject of the E-mail
+        /// </summary>
+        public string SubjectNormalized { get; private set; }
+
+        /// <summary>
+        ///     Returns or sets the  the depth of the reply in a hierarchical representation of Post objects in one conversation
+        /// </summary>
+        public byte[] ConversationIndex { get; set; }
+
+        /// <summary>
+        ///     contains an unchanging copy of the original subject.
+        /// </summary>
+        public string ConversationTopic { get; set; }
+
+        /// <summary>
+        ///     Gets or sets a valud indicating the message sender's opinion of the sensitivity of a message
+        /// </summary>
+        public long Sensitiviy { get; set; }
+
+        /// <summary>
+        ///     Returns or sets the <see cref="Enums.MessagePriority"/>
+        /// </summary>
+        public MessagePriority Priority { get; set; }
+
+        /// <summary>
+        ///     Returns or sets the <see cref="Enums.MessageImportance"/>
+        /// </summary>
+        public MessageImportance Importance { get; set; }
+
+        /// <summary>
+        ///     Returns or sets keywords or categories for the Message object
+        /// </summary>
+        public string[] Keywords { get; set; }
+
+        /// <summary>
+        ///     Returns or sets the text labels assigned to this Message object
+        /// </summary>
+        public string[] Categories { get; set; }
         #endregion
 
         #region Constructor
@@ -163,6 +296,105 @@ namespace MsgKit
 
             TopLevelProperties = new TopLevelProperties();
             NamedProperties = new NamedProperties(TopLevelProperties);
+
+            Importance = MessageImportance.IMPORTANCE_NORMAL;
+        }
+
+        internal void WriteToStorage()
+        { 
+            if (!SentOn.HasValue)
+                SentOn = DateTime.UtcNow;
+
+            if (!CreatedOn.HasValue)
+                CreatedOn = DateTime.UtcNow;
+
+            if (!LastModifiedOn.HasValue)
+                LastModifiedOn = DateTime.UtcNow;
+
+            TopLevelProperties.AddProperty(PropertyTags.PR_CLIENT_SUBMIT_TIME, SentOn.Value.ToUniversalTime());
+            TopLevelProperties.AddProperty(PropertyTags.PR_CREATION_TIME, CreatedOn.Value.ToUniversalTime());
+            TopLevelProperties.AddProperty(PropertyTags.PR_LAST_MODIFICATION_TIME, LastModifiedOn.Value.ToUniversalTime());
+            TopLevelProperties.AddProperty(PropertyTags.PR_BODY_W, BodyText);
+
+            if (string.IsNullOrWhiteSpace(BodyRtf) && !string.IsNullOrWhiteSpace(BodyHtml))
+            {
+                BodyRtf = Strings.GetEscapedRtf(BodyHtml);
+                BodyRtfCompressed = true;
+            }
+
+            if (!string.IsNullOrWhiteSpace(BodyRtf))
+            {
+                TopLevelProperties.AddProperty(PropertyTags.PR_RTF_COMPRESSED, new RtfCompressor().Compress(Encoding.ASCII.GetBytes(BodyRtf)));
+                TopLevelProperties.AddProperty(PropertyTags.PR_RTF_IN_SYNC, BodyRtfCompressed);
+            }
+
+            SetSubject();
+            TopLevelProperties.AddProperty(PropertyTags.PR_SUBJECT_W, Subject);
+            TopLevelProperties.AddProperty(PropertyTags.PR_NORMALIZED_SUBJECT_W, SubjectNormalized);
+            TopLevelProperties.AddProperty(PropertyTags.PR_SUBJECT_PREFIX_W, SubjectPrefix);
+            TopLevelProperties.AddProperty(PropertyTags.PR_CONVERSATION_TOPIC_W, ConversationTopic);
+            TopLevelProperties.AddProperty(PropertyTags.PR_CONVERSATION_INDEX, ConversationIndex);
+            TopLevelProperties.AddProperty(PropertyTags.PR_LAST_MODIFIER_NAME_W, LastModifiedBy);
+            TopLevelProperties.AddProperty(PropertyTags.PR_SENSITIVITY, Sensitiviy);
+            TopLevelProperties.AddProperty(PropertyTags.PR_PRIORITY, Priority);
+            TopLevelProperties.AddProperty(PropertyTags.PR_IMPORTANCE, Importance);
+            TopLevelProperties.AddProperty(PropertyTags.PR_ICON_INDEX, IconIndex);
+            NamedProperties.AddProperty(NamedPropertyTags.PidNameKeywords, Keywords);
+
+        }
+        #endregion
+
+        #region SetSubject
+        /// <summary>
+        ///     These properties are computed by message store or transport providers from the PR_SUBJECT (PidTagSubject) 
+        ///     and PR_SUBJECT_PREFIX (PidTagSubjectPrefix) properties in the following manner. If the PR_SUBJECT_PREFIX 
+        ///     is present and is an initial substring of PR_SUBJECT, PR_NORMALIZED_SUBJECT and associated properties are 
+        ///     set to the contents of PR_SUBJECT with the prefix removed. If PR_SUBJECT_PREFIX is present, but it is not 
+        ///     an initial substring of PR_SUBJECT, PR_SUBJECT_PREFIX is deleted and recalculated from PR_SUBJECT using 
+        ///     the following rule: If the string contained in PR_SUBJECT begins with one to three non-numeric characters 
+        ///     followed by a colon and a space, then the string together with the colon and the blank becomes the prefix.
+        ///     Numbers, blanks, and punctuation characters are not valid prefix characters. If PR_SUBJECT_PREFIX is not 
+        ///     present, it is calculated from PR_SUBJECT using the rule outlined in the previous step.This property then 
+        ///     is set to the contents of PR_SUBJECT with the prefix removed.
+        /// </summary>
+        /// <remarks>
+        ///     When PR_SUBJECT_PREFIX is an empty string, PR_SUBJECT and PR_NORMALIZED_SUBJECT are the same. Ultimately, 
+        ///     this property should be the part of PR_SUBJECT following the prefix. If there is no prefix, this property 
+        ///     becomes the same as PR_SUBJECT.
+        /// </remarks>
+        protected void SetSubject()
+        {
+            if (!string.IsNullOrEmpty(SubjectPrefix) && !string.IsNullOrEmpty(Subject))
+            {
+                if (Subject.StartsWith(SubjectPrefix))
+                {
+                    SubjectNormalized = Subject.Substring(SubjectPrefix.Length);
+                }
+                else
+                {
+                    var matches = SubjectPrefixRegex.Matches(Subject);
+                    if (matches.Count > 0)
+                    {
+                        SubjectPrefix = matches.OfType<Match>().First().Groups[1].Value;
+                        SubjectNormalized = matches.OfType<Match>().First().Groups[2].Value;
+                    }
+                }
+            }
+            else if (!string.IsNullOrEmpty(Subject))
+            {
+                var matches = SubjectPrefixRegex.Matches(Subject);
+                if (matches.Count > 0)
+                {
+                    SubjectPrefix = matches.OfType<Match>().First().Groups[1].Value;
+                    SubjectNormalized = matches.OfType<Match>().First().Groups[2].Value;
+                }
+                else
+                    SubjectNormalized = Subject;
+            }
+            else
+                SubjectNormalized = Subject;
+
+            if (SubjectPrefix == null) SubjectPrefix = string.Empty;
         }
         #endregion
 

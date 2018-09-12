@@ -41,9 +41,6 @@
     <AssemblyOriginatorKeyFile>MsgKit.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.2.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\packages\BouncyCastle.1.8.2\lib\BouncyCastle.Crypto.dll</HintPath>
-    </Reference>
     <Reference Include="MimeKit, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
       <HintPath>..\packages\MimeKit.2.0.4\lib\net45\MimeKit.dll</HintPath>
     </Reference>
@@ -52,9 +49,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Security" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -129,6 +124,7 @@
     <Compile Include="Enums\StoreSupportMask.cs" />
     <Compile Include="Enums\RecipientType.cs" />
     <Compile Include="Enums\AddressBookEntryIdType.cs" />
+    <Compile Include="Post.cs" />
     <Compile Include="Receiving.cs" />
     <Compile Include="ReceivingRepresenting.cs" />
     <Compile Include="Representing.cs" />
