@@ -262,6 +262,38 @@ namespace MsgKit.Structures
 
         private byte[] asBytes(PropertyType type, object obj)
         {
+            byte[] nullTerminator(PropertyType t)
+            {
+                switch(t)
+                {
+                    case PropertyType.PT_UNICODE:
+                        return new byte[2] { 0, 0 };
+                    case PropertyType.PT_STRING8:
+                        return new byte[1] { 0 };
+                    default:
+                        return new byte[0];
+                }
+            }
+
+            byte[] multiValue<TItem>(PropertyType itemType)
+            {
+                var values = (TItem[])obj;
+                if (!values.Any()) return null;
+                var byteCount = BitConverter.GetBytes(values.Length);
+                var valuesAsBytes = values.Select(v => asBytes(itemType, v));
+                var nullTerm = nullTerminator(itemType);
+                var result = new byte[byteCount.Length + valuesAsBytes.Sum(v => v.Length) + (values.Length * nullTerm.Length)];
+                var stream = new MemoryStream(result);
+                Array.Copy(byteCount, result, byteCount.Length);
+
+                foreach(var val in valuesAsBytes)
+                {
+                    Array.Copy(result, val, val.Length);
+                    Array.Copy(result, nullTerm, nullTerm.Length);
+                }
+                return result;
+            }
+
             var data = new byte[] { };
             switch (type)
             {
@@ -308,18 +340,15 @@ namespace MsgKit.Structures
                     data = Encoding.Unicode.GetBytes((string)obj);
                     break;
                 case PropertyType.PT_MV_UNICODE:
-                    var values = (string[])obj;
-                    var byteCount = BitConverter.GetBytes(values.Length);
-                    var appendableBytes = byteCount.ToList();
-                    foreach(var val in values)
-                    {
-                        appendableBytes.AddRange(asBytes(PropertyType.PT_UNICODE, val));
-                    }
-                    data = appendableBytes.ToArray();
+                    data = multiValue<string>(PropertyType.PT_UNICODE);
                     break;
 
                 case PropertyType.PT_STRING8:
                     data = Encoding.Default.GetBytes((string)obj);
+                    break;
+
+                case PropertyType.PT_MV_STRING8:
+                    data = multiValue<string>(PropertyType.PT_STRING8);
                     break;
 
                 case PropertyType.PT_CLSID:

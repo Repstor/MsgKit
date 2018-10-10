@@ -339,7 +339,12 @@ namespace MsgKit
             TopLevelProperties.AddProperty(PropertyTags.PR_PRIORITY, Priority);
             TopLevelProperties.AddProperty(PropertyTags.PR_IMPORTANCE, Importance);
             TopLevelProperties.AddProperty(PropertyTags.PR_ICON_INDEX, IconIndex);
-            NamedProperties.AddProperty(NamedPropertyTags.PidNameKeywords, Keywords);
+
+            if (Keywords != null && Keywords.Any())
+                NamedProperties.AddProperty(NamedPropertyTags.PidNameKeywords, Keywords);
+
+            if (Categories != null && Categories.Any())
+                NamedProperties.AddProperty(NamedPropertyTags.PidLidCategories, Categories);
 
         }
         #endregion
