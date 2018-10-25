@@ -55,10 +55,6 @@ namespace MsgKit
         /// </summary>
         private Recipients _recipients;
 
-        /// <summary>
-        ///     The E-mail <see cref="Attachments" />
-        /// </summary>
-        private Attachments _attachments;
 
         #endregion
 
@@ -106,15 +102,6 @@ namespace MsgKit
         ///     be set to the e-mail address contained in the PR_RECEIVED_BY_EMAIL_ADDRESS (PidTagReceivedByEmailAddress) property.
         /// </remarks>
         public ReceivingRepresenting ReceivingRepresenting { get; internal set; }
-                
-
-        /// <summary>
-        ///     The E-mail <see cref="Attachments" />
-        /// </summary>
-        public Attachments Attachments
-        {
-            get { return _attachments ?? (_attachments = new Attachments()); }
-        }
 
         /// <summary>
         ///     Returns the UTC date and time when the <see cref="Message"/> was received
@@ -246,21 +233,20 @@ namespace MsgKit
 
             Class = MessageClass.IPM_Note;
             MessageSize += Recipients.WriteToStorage(rootStorage);
-            MessageSize += Attachments.WriteToStorage(rootStorage);
+            
 
             var recipientCount = Recipients.Count;
-            var attachmentCount = Attachments.Count;
+            
             TopLevelProperties.RecipientCount = recipientCount;
-            TopLevelProperties.AttachmentCount = attachmentCount;
+            
             TopLevelProperties.NextRecipientId = recipientCount; 
-            TopLevelProperties.NextAttachmentId = attachmentCount;
+            
 
             TopLevelProperties.AddProperty(PropertyTags.PR_ENTRYID, Mapi.GenerateEntryId());
             TopLevelProperties.AddProperty(PropertyTags.PR_INSTANCE_KEY, Mapi.GenerateInstanceKey());
             TopLevelProperties.AddProperty(PropertyTags.PR_STORE_SUPPORT_MASK, StoreSupportMaskConst.StoreSupportMask, PropertyFlags.PROPATTR_READABLE);
             TopLevelProperties.AddProperty(PropertyTags.PR_STORE_UNICODE_MASK, StoreSupportMaskConst.StoreSupportMask, PropertyFlags.PROPATTR_READABLE);
             TopLevelProperties.AddProperty(PropertyTags.PR_ALTERNATE_RECIPIENT_ALLOWED, true, PropertyFlags.PROPATTR_READABLE);
-            TopLevelProperties.AddProperty(PropertyTags.PR_HASATTACH, attachmentCount > 0);
 
             if (TransportMessageHeaders != null)
             {
@@ -285,10 +271,7 @@ namespace MsgKit
             if (!string.IsNullOrWhiteSpace(InReplyToId))
                 TopLevelProperties.AddOrReplaceProperty(PropertyTags.PR_IN_REPLY_TO_ID_W, InReplyToId);
 
-            var messageFlags = MessageFlags.MSGFLAG_UNMODIFIED;
-
-            if (attachmentCount > 0)
-                messageFlags |= MessageFlags.MSGFLAG_HASATTACH;
+            _messageFlags = MessageFlags.MSGFLAG_UNMODIFIED;            
 
             TopLevelProperties.AddProperty(PropertyTags.PR_INTERNET_CPID, Encoding.UTF8.CodePage);
 
@@ -315,11 +298,11 @@ namespace MsgKit
 
             if (Draft)
             {
-                messageFlags |= MessageFlags.MSGFLAG_UNSENT;
+                _messageFlags |= MessageFlags.MSGFLAG_UNSENT;
                 IconIndex = MessageIconIndex.UnsentMail;
             }
 
-            TopLevelProperties.AddProperty(PropertyTags.PR_MESSAGE_FLAGS, messageFlags);
+            TopLevelProperties.AddProperty(PropertyTags.PR_MESSAGE_FLAGS, _messageFlags);
 
             Sender?.WriteProperties(TopLevelProperties);
             Receiving?.WriteProperties(TopLevelProperties);
@@ -397,9 +380,6 @@ namespace MsgKit
         /// </summary>
         public new void Dispose()
         {
-            foreach (var attachment in _attachments)
-                attachment.Stream.Dispose();
-
             base.Dispose();
         }
         #endregion

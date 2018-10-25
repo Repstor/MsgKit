@@ -55,6 +55,16 @@ namespace MsgKit
         /// </summary>
         private static readonly Regex SubjectPrefixRegex = new Regex(@"^(\D{1,3}:\s)(.*)$");
 
+        /// <summary>
+        ///     The E-mail <see cref="Attachments" />
+        /// </summary>
+        private Attachments _attachments;
+
+        /// <summary>
+        ///     The <see cref="MessageFlags" /> 
+        /// </summary>
+        protected MessageFlags _messageFlags;
+
         #endregion
 
         #region Properties
@@ -67,6 +77,14 @@ namespace MsgKit
         ///     The <see cref="MessageClass"/>
         /// </summary>
         internal MessageClass Class;
+
+        /// <summary>
+        ///     The E-mail <see cref="Attachments" />
+        /// </summary>
+        public Attachments Attachments
+        {
+            get { return _attachments ?? (_attachments = new Attachments()); }
+        }
 
         /// <summary>
         ///     Returns <see cref="Class"/> as a string that is written into the MSG file
@@ -301,7 +319,20 @@ namespace MsgKit
         }
 
         internal void WriteToStorage()
-        { 
+        {
+            var rootStorage = CompoundFile.RootStorage;
+            MessageSize += Attachments.WriteToStorage(rootStorage);
+            var attachmentCount = Attachments.Count;
+
+            TopLevelProperties.NextAttachmentId = attachmentCount;
+            TopLevelProperties.AttachmentCount = attachmentCount;
+            TopLevelProperties.AddProperty(PropertyTags.PR_HASATTACH, attachmentCount > 0);
+
+            var messageFlags = MessageFlags.MSGFLAG_UNMODIFIED;
+
+            if (attachmentCount > 0)
+                messageFlags |= MessageFlags.MSGFLAG_HASATTACH;
+
             if (!SentOn.HasValue)
                 SentOn = DateTime.UtcNow;
 
@@ -438,6 +469,9 @@ namespace MsgKit
         /// </summary>
         public void Dispose()
         {
+            foreach (var attachment in Attachments)
+                attachment.Stream.Dispose();
+
             CompoundFile?.Close();
         }
         #endregion
