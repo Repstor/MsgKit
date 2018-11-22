@@ -258,7 +258,37 @@ namespace MsgKit.Structures
             var data = asBytes(mapiTag.Type, obj);
             
             Add(new Property(mapiTag.Id, mapiTag.Type, flags, data));
+
+            if(isMultiValue(mapiTag.Type))
+            {
+                AddMultiValueStreams(mapiTag, obj, flags);
+            }
         }
+
+        private bool isMultiValue(PropertyType type) => type.ToString().Contains("_MV_");
+
+
+        private void AddMultiValueStreams(PropertyTag mapiTag, object obj, PropertyFlags flags)
+        {
+            var values = (string[])obj;
+            var singleValueType = GetSingleTypeFromMultiValueType(mapiTag.Type);
+            var index = 0;
+            foreach (var val in values)
+            {
+                Add(new Property(
+                    mapiTag.Id, 
+                    mapiTag.Type,
+                    flags,
+                    asBytes(singleValueType, val), 
+                    index));
+                index++;
+            }
+            
+        }
+
+        private PropertyType GetSingleTypeFromMultiValueType(PropertyType multiValueType) =>
+            (PropertyType) Enum.Parse(typeof(PropertyType), multiValueType.ToString().Replace("_MV", ""));
+        
 
         private byte[] asBytes(PropertyType type, object obj)
         {
@@ -280,17 +310,10 @@ namespace MsgKit.Structures
                 var values = (TItem[])obj;
                 if (!values.Any()) return null;
                 var byteCount = BitConverter.GetBytes(values.Length);
-                var valuesAsBytes = values.Select(v => asBytes(itemType, v));
                 var nullTerm = nullTerminator(itemType);
-                var result = new byte[byteCount.Length + valuesAsBytes.Sum(v => v.Length) + (values.Length * nullTerm.Length)];
-                var stream = new MemoryStream(result);
+                var result = new byte[byteCount.Length + nullTerm.Length];
                 Array.Copy(byteCount, result, byteCount.Length);
-
-                foreach(var val in valuesAsBytes)
-                {
-                    Array.Copy(result, val, val.Length);
-                    Array.Copy(result, nullTerm, nullTerm.Length);
-                }
+                Array.Copy(nullTerm, result, nullTerm.Length);
                 return result;
             }
 

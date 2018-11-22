@@ -25,6 +25,7 @@
 //
 
 using MsgKit.Enums;
+using MsgKit.Helpers;
 // ReSharper disable InconsistentNaming
 // ReSharper disable ConvertPropertyToExpressionBody
 
@@ -33,7 +34,7 @@ namespace MsgKit
     /// <summary>
     ///     A class that holds all the known mapi tags
     /// </summary>
-    internal static class PropertyTags
+    public static class PropertyTags
     {
         /// <summary>
         ///     The prefix for an <see cref="Recipient" /> <see cref="OpenMcdf.CFStorage" />
@@ -1827,6 +1828,18 @@ namespace MsgKit
         internal static PropertyTag PR_SENDER_NAME_A
         {
             get { return new PropertyTag(0x0C1A, PropertyType.PT_STRING8); }
+        }
+
+        /// <summary>
+        ///     The client can set this property, but it has no impact on the Task-Related Objects
+        ///     protocol and is ignored by the server.
+        /// </summary>
+        public static PropertyTag PR_CLASSIFIED
+        {
+            get
+            {
+                return new PropertyTag(0x85B5,  PropertyType.PT_BOOLEAN);
+            }
         }
 
         /// <summary>
@@ -4499,6 +4512,14 @@ namespace MsgKit
         }
 
         /// <summary>
+        ///     The creators name
+        /// </summary>
+        public static PropertyTag PR_CREATOR_NAME_W
+        {
+            get { return new PropertyTag(0x3FF8, PropertyType.PT_UNICODE); }
+        }
+
+        /// <summary>
         ///     The creators e-mail address
         /// </summary>
         internal static PropertyTag PR_CreatorEmailAddr_W
@@ -4575,7 +4596,7 @@ namespace MsgKit
     /// <summary>
     ///     Used to hold exactly one property tag
     /// </summary>
-    internal class PropertyTag
+    public class PropertyTag
     {
         #region Properties
         /// <summary>
@@ -4596,6 +4617,11 @@ namespace MsgKit
         {
             get { return PropertyTags.SubStorageStreamPrefix + Id.ToString("X4") + ((ushort)Type).ToString("X4"); }
         }
+
+        /// <summary>
+        ///     Get the Id of the property, for use with the Outlook REST Api, or MS Graph
+        /// </summary>
+        public string RestPropertyId => PropertyExtensions.RestPropertyId(this);
         #endregion
 
         #region Constructor

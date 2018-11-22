@@ -371,8 +371,8 @@ namespace MsgKit
             TopLevelProperties.AddProperty(PropertyTags.PR_IMPORTANCE, Importance);
             TopLevelProperties.AddProperty(PropertyTags.PR_ICON_INDEX, IconIndex);
 
-            if (Keywords != null && Keywords.Any())
-                NamedProperties.AddProperty(NamedPropertyTags.PidNameKeywords, Keywords);
+            if (Categories != null && Categories.Any())
+                NamedProperties.AddProperty(NamedPropertyTags.PidNameKeywords, Categories);
 
             if (Categories != null && Categories.Any())
                 NamedProperties.AddProperty(NamedPropertyTags.PidLidCategories, Categories);

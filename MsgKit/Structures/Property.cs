@@ -50,10 +50,12 @@ namespace MsgKit.Structures
         ///     Returns the Property as a readable string
         /// </summary>
         /// <returns></returns>
-        public string Name
-        {
-            get { return PropertyTags.SubStorageStreamPrefix + Id.ToString("X4") + ((ushort)Type).ToString("X4"); }
-        }
+        public string Name =>
+            PropertyTags.SubStorageStreamPrefix 
+            + Id.ToString("X4") 
+            + ((ushort)Type).ToString("X4")
+            + (MultiValueIndex >= 0 ? "-" + ((uint)MultiValueIndex).ToString("X8") : ""); 
+        
 
         /// <summary>
         ///     Returns the Property as a readable string without the streamprefix and type
@@ -78,7 +80,7 @@ namespace MsgKit.Structures
         /// <summary>
         ///     Returns <c>true</c> when this property is part of a multivalue property
         /// </summary>
-        internal bool MultiValue { get; }
+        internal int MultiValueIndex { get; } = -1;
 
         /// <summary>
         ///     The <see cref="PropertyFlags">property flags</see> that have been set
@@ -460,14 +462,13 @@ namespace MsgKit.Structures
         /// <param name="id">The id of the property</param>
         /// <param name="type">The <see cref="PropertyType" /></param>
         /// <param name="data">The property data</param>
-        /// <param name="multiValue">Set to <c>true</c> to indicate that this property is part of a
-        /// multivalue property</param>
-        internal Property(ushort id, PropertyType type, byte[] data, bool multiValue = false)
+        /// <param name="multiValueIndex">if part of a multivalue property, this is the index of the value</param>
+        internal Property(ushort id, PropertyType type, byte[] data, int multiValueIndex = -1)
         {
             Id = id;
             Type = type;
             Data = data;
-            MultiValue = multiValue;
+            MultiValueIndex = multiValueIndex;
         }
 
         /// <summary>
@@ -477,15 +478,15 @@ namespace MsgKit.Structures
         /// <param name="type">The <see cref="PropertyType" /></param>
         /// <param name="flags">The <see cref="PropertyFlags" /></param>
         /// <param name="data">The property data</param>
-        /// <param name="multiValue">Set to <c>true</c> to indicate that this property is part of a
-        /// multivalue property</param>
-        internal Property(ushort id, PropertyType type, PropertyFlags flags, byte[] data, bool multiValue = false)
+        /// <param name="multiValueIndex">if part of a multivalue property, this is the index of the value</param>
+
+        internal Property(ushort id, PropertyType type, PropertyFlags flags, byte[] data, int multiValueIndex = -1)
         {
             Id = id;
             Type = type;
             Flags = Convert.ToUInt32(flags);
             Data = data;
-            MultiValue = multiValue;
+            MultiValueIndex = multiValueIndex;
         }
 
         /// <summary>
@@ -495,15 +496,14 @@ namespace MsgKit.Structures
         /// <param name="type">The <see cref="PropertyType" /></param>
         /// <param name="flags">The <see cref="PropertyFlags" /></param>
         /// <param name="data">The property data</param>
-        /// <param name="multiValue">Set to <c>true</c> to indicate that this property is part of a
-        /// multivalue property</param>
-        internal Property(ushort id, PropertyType type, uint flags, byte[] data, bool multiValue = false)
+        /// <param name="multiValueIndex">if part of a multivalue property, this is the index of the value</param>
+        internal Property(ushort id, PropertyType type, uint flags, byte[] data, int multiValueIndex = -1)
         {
             Id = id;
             Type = type;
             Flags = flags;
             Data = data;
-            MultiValue = multiValue;
+            MultiValueIndex = multiValueIndex;
         }
         #endregion
     }

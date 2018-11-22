@@ -27,6 +27,7 @@
 using System;
 using MsgKit.Enums;
 using MsgKit.Structures;
+using MsgKit.Helpers;
 
 // ReSharper disable ConvertPropertyToExpressionBody
 // ReSharper disable InconsistentNaming
@@ -36,7 +37,7 @@ namespace MsgKit
     /// <summary>
     ///     A class that holds all the known named mapi tags
     /// </summary>
-    internal static class NamedPropertyTags
+    public static class NamedPropertyTags
     {
         /// <summary>
         ///     Specifies the date and time at which the meeting-related object was sent
@@ -3565,7 +3566,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains keywords or categories for the Message object.
         /// </summary>
-        internal static NamedPropertyTag PidNameKeywords
+        public static NamedPropertyTag PidNameKeywords
         {
             get { return new NamedPropertyTag(0x0000, "PidNameKeywords",
                     new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_MV_STRING8); }
@@ -4245,7 +4246,7 @@ namespace MsgKit
     /// <summary>
     ///     Used to hold exactly one named property tag
     /// </summary>
-    internal class NamedPropertyTag
+    public class NamedPropertyTag
     {
         #region Properties
         /// <summary>
@@ -4267,6 +4268,19 @@ namespace MsgKit
         ///     The 2 byte <see cref="PropertyType" />
         /// </summary>
         public PropertyType Type { get; }
+
+        /// <summary>
+        ///     PropertyId, as required by outlook REST api
+        /// </summary>
+        public string RestPropertyId => PropertyExtensions.RestPropertyId(this);
+
+        /// <summary>
+        ///     Returns true if property type is a multi value type... e.g. PT_MV_STRING8
+        /// </summary>
+        public bool IsMultiValue => Type.ToString().Contains("_MV_");
+
+        
+
         #endregion
 
         #region Constructor

@@ -317,7 +317,7 @@ namespace MsgKit.Structures
                         for (var j = 0; j < count; j++)
                         {
                             data = binaryReader.ReadBytes(2);
-                            RecipientProperties.Add(new Property(id, type, data, true));
+                            RecipientProperties.Add(new Property(id, type, data, j));
                         }
                         break;
                     }
@@ -329,7 +329,7 @@ namespace MsgKit.Structures
                         for (var j = 0; j < count; j++)
                         {
                             data = binaryReader.ReadBytes(4);
-                            RecipientProperties.Add(new Property(id, type, data, true));
+                            RecipientProperties.Add(new Property(id, type, data, j));
                         }
                         break;
                     }
@@ -343,7 +343,7 @@ namespace MsgKit.Structures
                         for (var j = 0; j < count; j++)
                         {
                             data = binaryReader.ReadBytes(8);
-                            RecipientProperties.Add(new Property(id, type, data, true));
+                            RecipientProperties.Add(new Property(id, type, data, j));
                         }
                         break;
                     }
@@ -357,7 +357,7 @@ namespace MsgKit.Structures
                         {
                             var length = binaryReader.ReadInt16();
                             data = binaryReader.ReadBytes(length);
-                            RecipientProperties.Add(new Property(id, type, data, true));
+                            RecipientProperties.Add(new Property(id, type, data, j));
                         }
                         break;
                     }

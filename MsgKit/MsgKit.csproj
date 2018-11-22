@@ -95,6 +95,7 @@
     <Compile Include="Helpers\FileManager.cs" />
     <Compile Include="Helpers\Mapi.cs" />
     <Compile Include="Helpers\MimeType.cs" />
+    <Compile Include="Helpers\PropertyExtensions.cs" />
     <Compile Include="Helpers\RtfCompressor.cs" />
     <Compile Include="Helpers\Storage.cs" />
     <Compile Include="Helpers\Stream.cs" />

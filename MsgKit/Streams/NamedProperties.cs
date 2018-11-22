@@ -74,11 +74,15 @@ namespace MsgKit.Streams
             // Named property field 0000. 0x8000 + property offset
             _topLevelProperties.AddProperty(new PropertyTag((ushort) (0x8000 + _namedPropertyIndex++), mapiTag.Type), obj);
 
+            var kind = mapiTag.Name.StartsWith("PidName") ? PropertyKind.Name : PropertyKind.Lid;
+
             Add(new NamedProperty
             {
                 NameIdentifier = mapiTag.Id,
                 Guid = mapiTag.Guid,
-                Kind = PropertyKind.Lid
+                Kind = kind,
+                Name = mapiTag.Name,
+                NameSize = (uint) (kind == PropertyKind.Name ? mapiTag.Name.Length : 0 )
             });
         }
         #endregion
