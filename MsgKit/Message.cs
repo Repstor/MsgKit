@@ -374,8 +374,8 @@ namespace MsgKit
             if (Categories != null && Categories.Any())
                 NamedProperties.AddProperty(NamedPropertyTags.PidNameKeywords, Categories);
 
-            if (Categories != null && Categories.Any())
-                NamedProperties.AddProperty(NamedPropertyTags.PidLidCategories, Categories);
+            /*if (Categories != null && Categories.Any())
+                NamedProperties.AddProperty(NamedPropertyTags.PidLidCategories, Categories);*/
 
         }
         #endregion

@@ -47,7 +47,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x0001, "PidLidAttendeeCriticalChange",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_SYSTIME);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_SYSTIME);
             }
         }
 
@@ -59,7 +59,7 @@ namespace MsgKit
         {
             get
             {
-                return new NamedPropertyTag(0x002, "PidLidWhere", new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"),
+                return new NamedPropertyTag(0x002, "PidLidWhere", PropertySets.PSETID_Meeting,
                     PropertyType.PT_UNICODE);
             }
         }
@@ -74,7 +74,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x0003, "PidLidGlobalObjectId",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_BINARY);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_BINARY);
             }
         }
 
@@ -86,7 +86,7 @@ namespace MsgKit
         {
             get
             {
-                return new NamedPropertyTag(0x004, "PidLidIsSilent", new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"),
+                return new NamedPropertyTag(0x004, "PidLidIsSilent", PropertySets.PSETID_Meeting,
                     PropertyType.PT_BOOLEAN);
             }
         }
@@ -99,7 +99,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x0005, "PidLidIsRecurring",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_BOOLEAN);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_BOOLEAN);
             }
         }
 
@@ -111,7 +111,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x0006, "PidLidRequiredAttendees",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_UNICODE);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_UNICODE);
             }
         }
 
@@ -123,7 +123,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x0007, "PidLidOptionalAttendees",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_UNICODE);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_UNICODE);
             }
         }
 
@@ -135,7 +135,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x0008, "PidLidResourceAttendees",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_UNICODE);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_UNICODE);
             }
         }
 
@@ -147,7 +147,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x0009, "PidLidDelegateMail",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_BOOLEAN);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_BOOLEAN);
             }
         }
 
@@ -159,7 +159,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x000A, "PidLidIsException",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_BOOLEAN);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_BOOLEAN);
             }
         }
 
@@ -171,7 +171,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x000B, "PidLidSingleInvite",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_BOOLEAN);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_BOOLEAN);
             }
         }
 
@@ -196,7 +196,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x000D, "PidLidStartRecurrenceDate",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_LONG);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_LONG);
             }
         }
 
@@ -208,7 +208,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x0003, "PidLidStartRecurrenceTime",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_LONG);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_LONG);
             }
         }
 
@@ -220,7 +220,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x000F, "PidLidEndRecurrenceDate",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_LONG);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_LONG);
             }
         }
 
@@ -232,7 +232,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x0001, "PidLidEndRecurrenceTime",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_LONG);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_LONG);
             }
         }
 
@@ -244,7 +244,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x0011, "PidLidDayInterval",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_SHORT);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_SHORT);
             }
         }
 
@@ -256,7 +256,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x0012, "PidLidWeekInterval",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_SHORT);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_SHORT);
             }
         }
 
@@ -268,7 +268,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x0013, "PidLidMonthInterval",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_SHORT);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_SHORT);
             }
         }
 
@@ -280,7 +280,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x0014, "PidLidYearInterval",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_SHORT);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_SHORT);
             }
         }
 
@@ -291,7 +291,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x0017, "PidLidMonthOfYearMask",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_LONG);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_LONG);
             }
         }
 
@@ -303,7 +303,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x0018, "PidLidOldRecurrenceType",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_SHORT);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_SHORT);
             }
         }
 
@@ -316,7 +316,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x001A, "PidLidOwnerCriticalChange",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_SYSTIME);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_SYSTIME);
             }
         }
 
@@ -329,7 +329,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x001C, "PidLidCalendarType",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_LONG);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_LONG);
             }
         }
 
@@ -341,7 +341,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x001D, "PidLidAllAttendeesList",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_UNICODE);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_UNICODE);
             }
         }
 
@@ -355,7 +355,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x0023, "PidLidCleanGlobalObjectId",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_BINARY);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_BINARY);
             }
         }
 
@@ -368,7 +368,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x0024, "PidLidAppointmentMessageClass",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_UNICODE);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_UNICODE);
             }
         }
 
@@ -379,7 +379,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x0026, "PidLidMeetingType",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_LONG);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_LONG);
             }
         }
 
@@ -391,7 +391,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x0028, "PidLidOldLocation",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_UNICODE);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_UNICODE);
             }
         }
 
@@ -403,7 +403,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x0029, "PidLidOldWhenStartWhole",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_SYSTIME);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_SYSTIME);
             }
         }
 
@@ -415,7 +415,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x002A, "PidLidOldWhenStartWhole",
-                    new Guid("6ED8DA90-450B-101B-98DA-00AA003F1305"), PropertyType.PT_SYSTIME);
+                    PropertySets.PSETID_Meeting, PropertyType.PT_SYSTIME);
             }
         }
 
@@ -1267,7 +1267,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskStatus
         {
             get { return new NamedPropertyTag(0x8101, "PidLidTaskStatus",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Task, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -1276,7 +1276,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidPercentComplete
         {
             get { return new NamedPropertyTag(0x8102, "PidLidPercentComplete",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_DOUBLE); }
+                    PropertySets.PSETID_Task, PropertyType.PT_DOUBLE); }
         }
 
         /// <summary>
@@ -1285,7 +1285,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTeamTask
         {
             get { return new NamedPropertyTag(0x8103, "PidLidTeamTask",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Task, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -1294,7 +1294,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskStartDate
         {
             get { return new NamedPropertyTag(0x8104, "PidLidTaskStartDate",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PSETID_Task, PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -1303,7 +1303,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskDueDate
         {
             get { return new NamedPropertyTag(0x8105, "PidLidTaskDueDate",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PSETID_Task, PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -1313,7 +1313,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskResetReminder
         {
             get { return new NamedPropertyTag(0x8107, "PidLidTaskResetReminder",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Task, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -1322,7 +1322,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskAccepted
         {
             get { return new NamedPropertyTag(0x8108, "PidLidTaskAccepted",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Task, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -1331,7 +1331,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskDeadOccurrence
         {
             get { return new NamedPropertyTag(0x8109, "PidLidTaskDeadOccurrence",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Task, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -1340,7 +1340,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskDateCompleted
         {
             get { return new NamedPropertyTag(0x810F, "PidLidTaskDateCompleted",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PSETID_Task, PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -1349,7 +1349,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskActualEffort
         {
             get { return new NamedPropertyTag(0x8110, "PidLidTaskActualEffort",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Task, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -1358,7 +1358,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskEstimatedEffort
         {
             get { return new NamedPropertyTag(0x8111, "PidLidTaskEstimatedEffort",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Task, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -1367,7 +1367,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskVersion
         {
             get { return new NamedPropertyTag(0x8112, "PidLidTaskVersion",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Task, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -1376,7 +1376,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskState
         {
             get { return new NamedPropertyTag(0x8113, "PidLidTaskState",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Task, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -1385,7 +1385,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskLastUpdate
         {
             get { return new NamedPropertyTag(0x8115, "PidLidTaskLastUpdate",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PSETID_Task, PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -1395,7 +1395,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskRecurrence
         {
             get { return new NamedPropertyTag(0x8116, "PidLidTaskRecurrence",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_BINARY); }
+                    PropertySets.PSETID_Task, PropertyType.PT_BINARY); }
         }
 
         /// <summary>
@@ -1404,7 +1404,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskAssigners
         {
             get { return new NamedPropertyTag(0x8117, "PidLidTaskAssigners",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_BINARY); }
+                    PropertySets.PSETID_Task, PropertyType.PT_BINARY); }
         }
 
         /// <summary>
@@ -1414,7 +1414,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskStatusOnComplete
         {
             get { return new NamedPropertyTag(0x8119, "PidLidTaskStatusOnComplete",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Task, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -1423,7 +1423,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskHistory
         {
             get { return new NamedPropertyTag(0x811A, "PidLidTaskHistory",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Task, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -1433,7 +1433,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskUpdates
         {
             get { return new NamedPropertyTag(0x811B, "PidLidTaskUpdates",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Task, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -1442,7 +1442,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskComplete
         {
             get { return new NamedPropertyTag(0x811C, "PidLidTaskComplete",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Task, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -1452,7 +1452,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskFCreator
         {
             get { return new NamedPropertyTag(0x811E, "PidLidTaskFCreator",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Task, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -1461,7 +1461,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskOwner
         {
             get { return new NamedPropertyTag(0x811F, "PidLidTaskOwner",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PSETID_Task, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -1470,7 +1470,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskMultipleRecipients
         {
             get { return new NamedPropertyTag(0x8120, "PidLidTaskMultipleRecipients",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Task, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -1479,7 +1479,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskAssigner
         {
             get { return new NamedPropertyTag(0x8121, "PidLidTaskAssigner",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PSETID_Task, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -1488,7 +1488,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskLastUser
         {
             get { return new NamedPropertyTag(0x8122, "PidLidTaskLastUser",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PSETID_Task, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -1497,7 +1497,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskOrdinal
         {
             get { return new NamedPropertyTag(0x8123, "PidLidTaskOrdinal",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Task, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -1507,7 +1507,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskNoCompute
         {
             get { return new NamedPropertyTag(0x8124, "PidLidTaskNoCompute",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Task, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -1517,7 +1517,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskLastDelegate
         {
             get { return new NamedPropertyTag(0x8125, "PidLidTaskLastDelegate",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PSETID_Task, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -1526,7 +1526,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskFRecurring
         {
             get { return new NamedPropertyTag(0x8126, "PidLidTaskFRecurring",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Task, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -1536,7 +1536,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskRole
         {
             get { return new NamedPropertyTag(0x8127, "PidLidTaskRole",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PSETID_Task, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -1545,7 +1545,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskOwnership
         {
             get { return new NamedPropertyTag(0x8129, "PidLidTaskOwnership",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Task, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -1554,7 +1554,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAcceptanceState
         {
             get { return new NamedPropertyTag(0x812A, "PidLidAcceptanceState",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Task, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -1563,7 +1563,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskFFixOffline
         {
             get { return new NamedPropertyTag(0x812C, "PidLidTaskFFixOffline",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Task, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -1573,7 +1573,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTaskCustomFlags
         {
             get { return new NamedPropertyTag(0x8139, "PidLidTaskCustomFlags",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Task, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -1585,7 +1585,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x8518, "PidLidTaskMode",
-                  new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_LONG);
+                  PropertySets.PSETID_Common, PropertyType.PT_LONG);
             }
         }
 
@@ -1596,7 +1596,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTrustRecipientHighlights
         {
             get { return new NamedPropertyTag(0x823E, "PidLidTrustRecipientHighlights",
-                    new Guid("00062003-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Task, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -1605,7 +1605,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidSendMeetingAsIcal
         {
             get { return new NamedPropertyTag(0x8200, "PidLidSendMeetingAsIcal",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -1614,7 +1614,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAppointmentSequence
         {
             get { return new NamedPropertyTag(0x8201, "PidLidAppointmentSequence",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -1624,7 +1624,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAppointmentSequenceTime
         {
             get { return new NamedPropertyTag(0x8202, "PidLidAppointmentSequence",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -1633,7 +1633,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAppointmentLastSequence
         {
             get { return new NamedPropertyTag(0x8203, "PidLidAppointmentSequence",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -1642,7 +1642,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidChangeHighlight
         {
             get { return new NamedPropertyTag(0x8204, "PidLidChangeHighlight",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -1651,7 +1651,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidBusyStatus
         {
             get { return new NamedPropertyTag(0x8205, "PidLidBusyStatus",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -1661,7 +1661,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidFExceptionalBody
         {
             get { return new NamedPropertyTag(0x8206, "PidLidFExceptionalBody",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -1670,7 +1670,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAppointmentAuxiliaryFlags
         {
             get { return new NamedPropertyTag(0x8207, "PidLidAppointmentAuxiliaryFlags",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -1680,7 +1680,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidLocation
         {
             get { return new NamedPropertyTag(0x8208, "PidLidLocation",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -1689,7 +1689,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidMeetingWorkspaceUrl
         {
             get { return new NamedPropertyTag(0x8209, "PidLidMeetingWorkspaceUrl",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -1700,7 +1700,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidForwardInstance
         {
             get { return new NamedPropertyTag(0x820A, "PidLidForwardInstance",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -1710,7 +1710,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidLinkedTaskItems
         {
             get { return new NamedPropertyTag(0x820C, "PidLidLinkedTaskItems",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_MV_BINARY); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_MV_BINARY); }
         }
 
         /// <summary>
@@ -1720,7 +1720,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAppointmentStartWhole
         {
             get { return new NamedPropertyTag(0x820D, "PidLidAppointmentStartWhole",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_SYSTIME); }
 
         }
 
@@ -1731,7 +1731,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAppointmentEndWhole
         {
             get { return new NamedPropertyTag(0x820E, "PidLidAppointmentEndWhole",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -1740,7 +1740,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAppointmentStartTime
         {
             get { return new NamedPropertyTag(0x820F, "PidLidAppointmentStartTime",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -1749,7 +1749,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAppointmentEndTime
         {
             get { return new NamedPropertyTag(0x8210, "PidLidAppointmentEndTime",
-                    new Guid("00062002-0000-0000-C000-000000000046"),PropertyType.PT_SYSTIME); }
+                    PropertySets.PSETID_Appointment,PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -1760,7 +1760,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x8211, "PidLidAppointmentEndDate",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME);
+                    PropertySets.PSETID_Appointment, PropertyType.PT_SYSTIME);
             }
         }
 
@@ -1772,7 +1772,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x8212, "PidLidAppointmentStartDate",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME);
+                    PropertySets.PSETID_Appointment, PropertyType.PT_SYSTIME);
             }
         }
 
@@ -1784,7 +1784,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x8213, "PidLidAppointmentDuration",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_LONG);
+                    PropertySets.PSETID_Appointment, PropertyType.PT_LONG);
             }
         }
 
@@ -1817,7 +1817,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x8215, "PidLidAppointmentSubType",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN);
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BOOLEAN);
             }
         }
 
@@ -1829,7 +1829,7 @@ namespace MsgKit
         {
             get
             {
-                return new NamedPropertyTag(0x8216, "PidLidAppointmentRecur", new Guid("00062002-0000-0000-C000-000000000046"),
+                return new NamedPropertyTag(0x8216, "PidLidAppointmentRecur", PropertySets.PSETID_Appointment,
                     PropertyType.PT_BINARY);
             }
         }
@@ -1842,7 +1842,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x8217, "PidLidAppointmentStateFlags",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_LONG);
+                    PropertySets.PSETID_Appointment, PropertyType.PT_LONG);
             }
         }
 
@@ -1853,7 +1853,7 @@ namespace MsgKit
         {
             get
             {
-                return new NamedPropertyTag(0x8218, "PidLidResponseStatus", new Guid("00062002-0000-0000-C000-000000000046"),
+                return new NamedPropertyTag(0x8218, "PidLidResponseStatus", PropertySets.PSETID_Appointment,
                     PropertyType.PT_LONG);
             }
         }
@@ -1867,7 +1867,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x8220, "PidLidAppointmentReplyTime",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME);
+                    PropertySets.PSETID_Appointment, PropertyType.PT_SYSTIME);
             }
         }
 
@@ -1879,7 +1879,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x8223, "PidLidRecurring", 
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN);
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BOOLEAN);
             }
         }
 
@@ -1891,7 +1891,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidIntendedBusyStatus
         {
             get { return new NamedPropertyTag(0x8224, "PidLidIntendedBusyStatus",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -1900,7 +1900,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAppointmentUpdateTime
         {
             get { return new NamedPropertyTag(0x8226, "PidLidAppointmentUpdateTime",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -1910,7 +1910,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidExceptionReplaceTime
         {
             get { return new NamedPropertyTag(0x8228, "PidLidExceptionReplaceTime",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -1920,7 +1920,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidFInvited
         {
             get { return new NamedPropertyTag(0x8229, "PidLidFInvited",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -1931,7 +1931,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidFExceptionalAttendees
         {
             get { return new NamedPropertyTag(0x822B, "PidLidFExceptionalAttendees",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -1940,7 +1940,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidOwnerName
         {
             get { return new NamedPropertyTag(0x822E, "PidLidOwnerName",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -1950,7 +1950,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidFOthersAppointment
         {
             get { return new NamedPropertyTag(0x822F, "PidLidFOthersAppointment",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -1959,7 +1959,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAppointmentReplyName
         {
             get { return new NamedPropertyTag(0x8230, "PidLidAppointmentReplyName",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -1968,7 +1968,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidRecurrenceType
         {
             get { return new NamedPropertyTag(0x8231, "PidLidRecurrenceType",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -1977,7 +1977,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidRecurrencePattern
         {
             get { return new NamedPropertyTag(0x8232, "PidLidRecurrencePattern",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -1987,7 +1987,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTimeZoneStruct
         {
             get { return new NamedPropertyTag(0x8233, "PidLidTimeZoneStruct",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BINARY); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BINARY); }
         }
 
         /// <summary>
@@ -1997,7 +1997,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidTimeZoneDescription
         {
             get { return new NamedPropertyTag(0x8234, "PidLidTimeZoneDescription",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -2006,7 +2006,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidClipStart
         {
             get { return new NamedPropertyTag(0x8235, "PidLidClipStart",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -2015,7 +2015,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidClipEnd
         {
             get { return new NamedPropertyTag(0x8236, "PidLidClipEnd",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -2024,7 +2024,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidOriginalStoreEntryId
         {
             get { return new NamedPropertyTag(0x8237, "PidLidOriginalStoreEntryId",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BINARY); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BINARY); }
         }
 
         /// <summary>
@@ -2034,7 +2034,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAllAttendeesString
         {
             get { return new NamedPropertyTag(0x8238, "PidLidAllAttendeesString",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -2044,7 +2044,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAutoFillLocation
         {
             get { return new NamedPropertyTag(0x823A, "PidLidAutoFillLocation",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -2053,7 +2053,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidToAttendeesString
         {
             get { return new NamedPropertyTag(0x823B, "PidLidToAttendeesString",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -2062,7 +2062,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidCcAttendeesString
         {
             get { return new NamedPropertyTag(0x823C, "PidLidCcAttendeesString",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -2078,7 +2078,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidConferencingCheck
         {
             get { return new NamedPropertyTag(0x8240, "PidLidConferencingCheck",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -2087,7 +2087,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidConferencingType
         {
             get { return new NamedPropertyTag(0x8241, "PidLidConferencingType",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -2096,7 +2096,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidDirectory
         {
             get { return new NamedPropertyTag(0x8242, "PidLidDirectory",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -2105,7 +2105,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidOrganizerAlias
         {
             get { return new NamedPropertyTag(0x8243, "PidLidOrganizerAlias",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -2115,7 +2115,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAutoStartCheck
         {
             get { return new NamedPropertyTag(0x8244, "PidLidAutoStartCheck",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -2124,7 +2124,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAutoStartWhen
         {
             get { return new NamedPropertyTag(0x8245, "PidLidAutoStartWhen",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -2133,7 +2133,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAllowExternalCheck
         {
             get { return new NamedPropertyTag(0x8246, "PidLidAllowExternalCheck",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -2142,7 +2142,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidCollaborateDoc
         {
             get { return new NamedPropertyTag(0x8247, "PidLidCollaborateDoc",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -2151,7 +2151,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidNetShowUrl
         {
             get { return new NamedPropertyTag(0x8248, "",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -2161,7 +2161,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidOnlinePassword
         {
             get { return new NamedPropertyTag(0x8249, "",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -2171,7 +2171,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAppointmentProposedStartWhole
         {
             get { return new NamedPropertyTag(0x8250, "",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -2181,7 +2181,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAppointmentProposedEndWhole
         {
             get { return new NamedPropertyTag(0x8251, "",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -2191,7 +2191,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAppointmentProposedDuration
         {
             get { return new NamedPropertyTag(0x8256, "",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -2200,7 +2200,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAppointmentCounterProposal
         {
             get { return new NamedPropertyTag(0x8257, "",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -2210,7 +2210,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAppointmentProposalNumber
         {
             get { return new NamedPropertyTag(0x8259, "",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -2220,7 +2220,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAppointmentNotAllowPropose
         {
             get { return new NamedPropertyTag(0x825A, "",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -2229,7 +2229,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAppointmentUnsendableRecipients
         {
             get { return new NamedPropertyTag(0x825D, "",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BINARY); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BINARY); }
         }
 
         /// <summary>
@@ -2239,7 +2239,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAppointmentTimeZoneDefinitionStartDisplay
         {
             get { return new NamedPropertyTag(0x825E, "",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BINARY); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BINARY); }
         }
 
         /// <summary>
@@ -2248,7 +2248,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAppointmentTimeZoneDefinitionEndDisplay
         {
             get { return new NamedPropertyTag(0x825F, "",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BINARY); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BINARY); }
         }
 
         /// <summary>
@@ -2258,7 +2258,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidAppointmentTimeZoneDefinitionRecur
         {
             get { return new NamedPropertyTag(0x8260, "",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BINARY); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BINARY); }
         }
 
         /// <summary>
@@ -2268,7 +2268,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidForwardNotificationRecipients
         {
             get { return new NamedPropertyTag(0x8261, "",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BINARY); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BINARY); }
         }
 
         /// <summary>
@@ -2277,7 +2277,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidInboundICalStream
         {
             get { return new NamedPropertyTag(0x827A, "",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BINARY); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BINARY); }
         }
 
         /// <summary>
@@ -2287,7 +2287,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidReminderDelta
         {
             get { return new NamedPropertyTag(0x8501, "PidLidReminderDelta",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Common, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -2297,7 +2297,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidReminderFileParameter
         {
             get { return new NamedPropertyTag(0x851F, "PidLidReminderFileParameter",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PSETID_Common, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -2308,7 +2308,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidReminderOverride
         {
             get { return new NamedPropertyTag(0x851C, "PidLidReminderOverride",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Common, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -2317,7 +2317,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidReminderPlaySound
         {
             get { return new NamedPropertyTag(0x851E, "PidLidReminderPlaySound",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Common, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -2326,7 +2326,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidReminderSet
         {
             get { return new NamedPropertyTag(0x8503, "PidLidReminderSet",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Common, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -2335,7 +2335,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidReminderSignalTime
         {
             get { return new NamedPropertyTag(0x8560, "PidLidReminderSignalTime",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PSETID_Common, PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -2344,7 +2344,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidReminderTime
         {
             get { return new NamedPropertyTag(0x8502, "PidLidReminderTime",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PSETID_Common, PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -2353,7 +2353,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidReminderTimeDate
         {
             get { return new NamedPropertyTag(0x8505, "PidLidReminderTimeDate",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PSETID_Common, PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -2362,7 +2362,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidReminderTimeTime
         {
             get { return new NamedPropertyTag(0x8504, "PidLidReminderTimeTime",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Common, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -2371,7 +2371,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidReminderType
         {
             get { return new NamedPropertyTag(0x851D, "PidLidReminderType",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Common, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -2380,7 +2380,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidSingleBodyIcal
         {
             get { return new NamedPropertyTag(0x827B, "PidLidSingleBodyIcal",
-                    new Guid("00062002-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Appointment, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -2389,7 +2389,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidDayOfMonth
         {
             get { return new NamedPropertyTag(0x1000, "PidLidDayOfMonth",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Common, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -2398,7 +2398,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidICalendarDayOfWeekMask
         {
             get { return new NamedPropertyTag(0x1001, "PidLidICalendarDayOfWeekMask",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Common, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -2407,7 +2407,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidOccurrences
         {
             get { return new NamedPropertyTag(0x1005, "PidLidOccurrences",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Common, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -2416,7 +2416,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidMonthOfYear
         {
             get { return new NamedPropertyTag(0x1006, "PidLidMonthOfYear",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Common, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -2425,7 +2425,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidNoEndDateFlag
         {
             get { return new NamedPropertyTag(0x100B, "PidLidNoEndDateFlag",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_BOOLEAN); }
+                    PropertySets.PSETID_Common, PropertyType.PT_BOOLEAN); }
         }
 
         /// <summary>
@@ -2434,7 +2434,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidRecurrenceDuration
         {
             get { return new NamedPropertyTag(0x100D, "PidLidRecurrenceDuration",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Common, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -2443,7 +2443,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidRemoteStatus
         {
             get { return new NamedPropertyTag(0x8511, "PidLidRemoteStatus",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Common, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -2452,7 +2452,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidConversationActionMoveFolderEid
         {
             get { return new NamedPropertyTag(0x85C6, "PidLidConversationActionMoveFolderEid",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_BINARY); }
+                    PropertySets.PSETID_Common, PropertyType.PT_BINARY); }
         }
 
         /// <summary>
@@ -2461,7 +2461,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidConversationActionMoveStoreEid
         {
             get { return new NamedPropertyTag(0x85C7, "PidLidConversationActionMoveStoreEid",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_BINARY); }
+                    PropertySets.PSETID_Common, PropertyType.PT_BINARY); }
         }
 
         /// <summary>
@@ -2472,7 +2472,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidConversationActionMaxDeliveryTime
         {
             get { return new NamedPropertyTag(0x85C8, "PidLidConversationActionMaxDeliveryTime",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PSETID_Common, PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -2483,7 +2483,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidConversationProcessed
         {
             get { return new NamedPropertyTag(0x85C9, "PidLidConversationProcessed",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Common, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -2494,7 +2494,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidConversationActionLastAppliedTime
         {
             get { return new NamedPropertyTag(0x85CA, "PidLidConversationActionLastAppliedTime",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PSETID_Common, PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -2503,7 +2503,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidConversationActionVersion
         {
             get { return new NamedPropertyTag(0x85CB, "PidLidConversationActionVersion",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PSETID_Common, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -2539,7 +2539,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidLogEnd
         {
             get { return new NamedPropertyTag(0x8708, "PidLidLogEnd",
-                    new Guid("00062008-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PSETID_Common, PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -2729,7 +2729,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidSharingRemoteName
         {
             get { return new NamedPropertyTag(0x8A05, "PidLidSharingRemoteName",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -2738,7 +2738,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidSharingRemoteUid
         {
             get { return new NamedPropertyTag(0x8A06, "PidLidSharingRemoteUid",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3374,7 +3374,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidLidCategories
         {
             get { return new NamedPropertyTag(0x9000, "PidLidCategories",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_MV_STRING8); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_MV_STRING8); }
         }
 
         /// <summary>
@@ -3531,7 +3531,7 @@ namespace MsgKit
             get
             {
                 return new NamedPropertyTag(0x0000, "PidNameCreateDateTimeReadOnly",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME);
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_SYSTIME);
             }
         }
 
@@ -3542,7 +3542,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameRightsManagementLicense
         {
             get { return new NamedPropertyTag(0x0000, "PidNameRightsManagementLicense",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_MV_BINARY); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_MV_BINARY); }
         }
 
         /// <summary>
@@ -3551,7 +3551,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameEditTime
         {
             get { return new NamedPropertyTag(0x0000, "PidNameEditTime",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3560,7 +3560,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameHiddenCount
         {
             get { return new NamedPropertyTag(0x0000, "PidNameHiddenCount",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -3569,7 +3569,7 @@ namespace MsgKit
         public static NamedPropertyTag PidNameKeywords
         {
             get { return new NamedPropertyTag(0x0000, "PidNameKeywords",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_MV_STRING8); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_MV_STRING8); }
         }
 
         /// <summary>
@@ -3578,7 +3578,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameLastAuthor
         {
             get { return new NamedPropertyTag(0x0000, "PidNameLastAuthor",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3587,7 +3587,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameLastPrinted
         {
             get { return new NamedPropertyTag(0x0000, "PidNameLastPrinted",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -3596,7 +3596,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameLastSaveDateTime
         {
             get { return new NamedPropertyTag(0x0000, "PidNameLastSaveDateTime",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -3605,7 +3605,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameLineCount
         {
             get { return new NamedPropertyTag(0x0000, "PidNameLineCount",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -3614,7 +3614,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameManager
         {
             get { return new NamedPropertyTag(0x0000, "PidNameManager",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3623,7 +3623,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameMultimediaClipCount
         {
             get { return new NamedPropertyTag(0x0000, "PidNameMultimediaClipCount",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -3632,7 +3632,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameNoteCount
         {
             get { return new NamedPropertyTag(0x0000, "PidNameNoteCount",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -3641,7 +3641,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameOMSAccountGuid
         {
             get { return new NamedPropertyTag(0x0000, "PidNameOMSAccountGuid",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3650,7 +3650,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameOMSMobileModel
         {
             get { return new NamedPropertyTag(0x0000, "PidNameOMSMobileModel",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3660,7 +3660,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameOMSGScheduleTime
         {
             get { return new NamedPropertyTag(0x0000, "PidNameOMSGScheduleTime",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_SYSTIME); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_SYSTIME); }
         }
 
         /// <summary>
@@ -3669,7 +3669,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameOMSServiceType
         {
             get { return new NamedPropertyTag(0x0000, "PidNameOMSServiceType",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -3678,7 +3678,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameOMSSourceType
         {
             get { return new NamedPropertyTag(0x0000, "PidNameOMSSourceType",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -3687,7 +3687,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNamePhishingStamp
         {
             get { return new NamedPropertyTag(0x0000, "PidNamePhishingStamp",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -3696,7 +3696,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameSpoofingStamp
         {
             get { return new NamedPropertyTag(0x0000, "PidNameSpoofingStamp",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -3705,7 +3705,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNamePageCount
         {
             get { return new NamedPropertyTag(0x0000, "PidNamePageCount",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -3714,7 +3714,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameParagraphCount
         {
             get { return new NamedPropertyTag(0x0000, "PidNameParagraphCount",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -3723,7 +3723,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNamePresentationFormat
         {
             get { return new NamedPropertyTag(0x0000, "PidNamePresentationFormat",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3732,7 +3732,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameSecurity
         {
             get { return new NamedPropertyTag(0x0000, "PidNameSecurity",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -3741,7 +3741,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameSlideCount
         {
             get { return new NamedPropertyTag(0x0000, "PidNameSlideCount",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -3750,7 +3750,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameSubject
         {
             get { return new NamedPropertyTag(0x0000, "PidNameSubject",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3759,7 +3759,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameTemplate
         {
             get { return new NamedPropertyTag(0x0000, "PidNameTemplate",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3768,7 +3768,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameTitle
         {
             get { return new NamedPropertyTag(0x0000, "PidNameTitle",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3777,7 +3777,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameWordCount
         {
             get { return new NamedPropertyTag(0x0000, "PidNameWordCount",
-                    new Guid("00020329-0000-0000-C000-000000000046"), PropertyType.PT_LONG); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_LONG); }
         }
 
         /// <summary>
@@ -3786,7 +3786,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameAcceptLanguage
         {
             get { return new NamedPropertyTag(0x0000, "PidNameAcceptLanguage",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3795,7 +3795,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameApproved
         {
             get { return new NamedPropertyTag(0x0000, "PidNameApproved",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3804,7 +3804,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameApprovalAllowedDescisionMakers
         {
             get { return new NamedPropertyTag(0x0000, "PidNameApprovalAllowedDescisionMakers",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3813,7 +3813,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameApprovalRequestor
         {
             get { return new NamedPropertyTag(0x0000, "PidNameApprovalRequestor",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3822,7 +3822,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameAuthenticatedAs
         {
             get { return new NamedPropertyTag(0x0000, "PidNameAuthenticatedAs",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3831,7 +3831,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameAuthenticatedDomain
         {
             get { return new NamedPropertyTag(0x0000, "PidNameAuthenticatedDomain",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3840,7 +3840,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameAuthenticatedMechanism
         {
             get { return new NamedPropertyTag(0x0000, "PidNameAuthenticatedMechanism",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3849,7 +3849,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameAuthenticatedSource
         {
             get { return new NamedPropertyTag(0x0000, "PidNameAuthenticatedSource",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3860,7 +3860,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameBcc
         {
             get { return new NamedPropertyTag(0x0000, "PidNameBcc",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3870,7 +3870,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameCc
         {
             get { return new NamedPropertyTag(0x0000, "PidNameCc",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3880,7 +3880,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameContentBase
         {
             get { return new NamedPropertyTag(0x0000, "PidNameContentBase",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3889,7 +3889,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameContentClass
         {
             get { return new NamedPropertyTag(0x0000, "PidNameContentClass",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3898,7 +3898,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameContentDisposition
         {
             get { return new NamedPropertyTag(0x0000, "PidNameContentDisposition",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3907,7 +3907,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameContentID
         {
             get { return new NamedPropertyTag(0x0000, "PidNameContentID",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3916,7 +3916,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameContentLanguage
         {
             get { return new NamedPropertyTag(0x0000, "PidNameContentLanguage",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3926,7 +3926,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameContentLocation
         {
             get { return new NamedPropertyTag(0x0000, "PidNameContentLocation",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3935,7 +3935,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameContentTransferEncoding
         {
             get { return new NamedPropertyTag(0x0000, "PidNameContentTransferEncoding",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3944,7 +3944,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameContentType
         {
             get { return new NamedPropertyTag(0x0000, "PidNameContentType",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3953,7 +3953,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameCrossReference
         {
             get { return new NamedPropertyTag(0x0000, "PidNameCrossReference",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3963,7 +3963,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameXSharingBrowseUrl
         {
             get { return new NamedPropertyTag(0x0000, "PidNameXSharingBrowseUrl",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3973,7 +3973,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameXSharingCapabilities
         {
             get { return new NamedPropertyTag(0x0000, "PidNameXSharingCapabilities",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3982,7 +3982,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameXSharingConfigUrl
         {
             get { return new NamedPropertyTag(0x0000, "PidNameXSharingConfigUrl",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -3991,7 +3991,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameXSharingExtendedCaps
         {
             get { return new NamedPropertyTag(0x0000, "PidNameXSharingExtendedCaps",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -4001,7 +4001,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameXSharingFlavor
         {
             get { return new NamedPropertyTag(0x0000, "PidNameXSharingFlavor",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -4011,7 +4011,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameXSharingInstanceGuid
         {
             get { return new NamedPropertyTag(0x0000, "PidNameXSharingInstanceGuid",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -4020,7 +4020,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameXSharingLocalType
         {
             get { return new NamedPropertyTag(0x0000, "PidNameXSharingLocalType",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -4029,7 +4029,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameXSharingProviderGuid
         {
             get { return new NamedPropertyTag(0x0000, "PidNameXSharingProviderGuid",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -4038,7 +4038,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameXSharingProviderName
         {
             get { return new NamedPropertyTag(0x0000, "PidNameXSharingProviderName",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -4047,7 +4047,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameXSharingProviderUrl
         {
             get { return new NamedPropertyTag(0x0000, "PidNameXSharingProviderUrl",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -4056,7 +4056,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameXSharingRemoteName
         {
             get { return new NamedPropertyTag(0x0000, "PidNameXSharingRemoteName",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -4066,7 +4066,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameXSharingRemotePath
         {
             get { return new NamedPropertyTag(0x0000, "PidNameXSharingRemotePath",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -4075,7 +4075,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameXSharingRemoteStoreUid
         {
             get { return new NamedPropertyTag(0x0000, "PidNameXSharingRemoteStoreUid",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -4084,7 +4084,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameXSharingRemoteType
         {
             get { return new NamedPropertyTag(0x0000, "PidNameXSharingRemoteType",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -4093,7 +4093,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameXSharingRemoteUid
         {
             get { return new NamedPropertyTag(0x0000, "PidNameXSharingRemoteUid",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -4102,7 +4102,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameXSieve
         {
             get { return new NamedPropertyTag(0x0000, "PidNameXSieve",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -4111,7 +4111,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameXVirusScanned
         {
             get { return new NamedPropertyTag(0x0000, "PidNameXVirusScanned",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -4166,7 +4166,7 @@ namespace MsgKit
         internal static NamedPropertyTag PidNameAudioNotes
         {
             get { return new NamedPropertyTag(0x0000, "PidNameAudioNotes",
-                    new Guid("00020386-0000-0000-C000-000000000046"), PropertyType.PT_UNICODE); }
+                    PropertySets.PS_INTERNET_HEADERS, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>

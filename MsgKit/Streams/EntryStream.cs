@@ -171,9 +171,7 @@ namespace MsgKit.Streams
         internal void Write(BinaryWriter binaryWriter)
         {
             binaryWriter.Write(NameIdentifierOrStringOffset);
-            binaryWriter.Write((ushort)((IndexAndKindInformation.GuidIndex<<1) | (ushort) IndexAndKindInformation.PropertyKind));
-            binaryWriter.Write(IndexAndKindInformation.PropertyIndex); //Doesn't seem to be the case in the spec. 
-            // Fortunately section 3.2 clears this up. 
+            IndexAndKindInformation.Write(binaryWriter);
         }
         #endregion
     }
@@ -270,7 +268,7 @@ namespace MsgKit.Streams
         internal void Write(BinaryWriter binaryWriter)
         {
             binaryWriter.Write(PropertyIndex);
-            binaryWriter.Write(GuidIndex + (uint) PropertyKind);
+            binaryWriter.Write((ushort)((GuidIndex << 1) + 1));
         }
         #endregion
     }

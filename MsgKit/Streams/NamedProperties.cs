@@ -30,6 +30,8 @@ using System.Linq;
 using MsgKit.Enums;
 using MsgKit.Structures;
 using OpenMcdf;
+using Force.Crc32;
+using System.Text;
 
 namespace MsgKit.Streams
 {
@@ -72,21 +74,34 @@ namespace MsgKit.Streams
         internal void AddProperty(NamedPropertyTag mapiTag, object obj)
         {
             // Named property field 0000. 0x8000 + property offset
-            _topLevelProperties.AddProperty(new PropertyTag((ushort) (0x8000 + _namedPropertyIndex++), mapiTag.Type), obj);
+            //_topLevelProperties.AddProperty(new PropertyTag((ushort)(0x8000 + _namedPropertyIndex++), mapiTag.Type), obj);
 
             var kind = mapiTag.Name.StartsWith("PidName") ? PropertyKind.Name : PropertyKind.Lid;
-
-            Add(new NamedProperty
+            var namedProperty = new NamedProperty
             {
                 NameIdentifier = mapiTag.Id,
                 Guid = mapiTag.Guid,
                 Kind = kind,
-                Name = mapiTag.Name,
-                NameSize = (uint) (kind == PropertyKind.Name ? mapiTag.Name.Length : 0 )
-            });
+                Name = mapiTag.Name.Replace("PidName", ""),
+                NameSize = (uint)(kind == PropertyKind.Name ? mapiTag.Name.Length : 0)
+            };
+
+            var nameIdeintifier = GenerateNameIdentifier(namedProperty);
+            _topLevelProperties.AddProperty(new PropertyTag(nameIdeintifier, mapiTag.Type), obj);
+
+            Add(namedProperty);
         }
         #endregion
-        
+
+        private ushort GetGuidIndex(NamedProperty namedProperty)
+        {
+            return (ushort)(namedProperty.Guid == PropertySets.PS_MAPI ? 1
+                            : namedProperty.Guid == PropertySets.PS_PUBLIC_STRINGS ? 2
+                            : (Guids.IndexOf(namedProperty.Guid) + 3));
+        }
+
+        private IList<Guid> Guids => this.Select(x => x.Guid).Distinct().ToList();
+
         #region WriteProperties
         /// <summary>
         ///     Writes the properties to the <see cref="CFStorage" />
@@ -107,22 +122,36 @@ namespace MsgKit.Streams
             var entryStream2 = new EntryStream(storage);
 
             ushort propertyIndex = 0;
-            var guids = this.Select(x => x.Guid).Distinct().ToList();
 
-            foreach (var guid in guids)
+            foreach (var guid in Guids.Where(g => g!= PropertySets.PS_MAPI && g != PropertySets.PS_PUBLIC_STRINGS))
                 guidStream.Add(guid);
 
             foreach (var namedProperty in this)
             {
-                var guidIndex = (ushort) (guids.IndexOf(namedProperty.Guid) + 3);
+                var guidIndex = GetGuidIndex(namedProperty);
+
+                var indexAndKind = new IndexAndKindInformation(propertyIndex, guidIndex, namedProperty.Kind);
+
+                if (namedProperty.Kind == PropertyKind.Name)
+                {
+                    var stringStreamItem = new StringStreamItem(namedProperty.Name);
+                    stringStream.Add(stringStreamItem);
+                    entryStream.Add(new EntryStreamItem(stringStream.GetItemByteOffset(stringStreamItem), indexAndKind));
+                }
+                else
+                {
+                    entryStream.Add(new EntryStreamItem(namedProperty.NameIdentifier, indexAndKind));
+                }
+
+                entryStream2.Add(new EntryStreamItem(GenerateNameIdentifier(namedProperty), indexAndKind));
+                entryStream2.Write(storage, GenerateStreamName(namedProperty));
 
                 // Dependign on the property type. This is doing name. 
-                entryStream.Add(new EntryStreamItem(namedProperty.NameIdentifier, new IndexAndKindInformation(propertyIndex, guidIndex, PropertyKind.Lid))); //+3 as per spec.
-                entryStream2.Add(new EntryStreamItem(namedProperty.NameIdentifier, new IndexAndKindInformation(propertyIndex, guidIndex, PropertyKind.Lid)));
-                
-                //3.2.2 of the SPEC [MS-OXMSG]
-                entryStream2.Write(storage, GenerateStreamString(namedProperty.NameIdentifier, guidIndex, namedProperty.Kind));
-                
+                //entryStream.Add(new EntryStreamItem(namedProperty.NameIdentifier, new IndexAndKindInformation(propertyIndex, guidIndex, PropertyKind.Lid))); //+3 as per spec.
+                //entryStream2.Add(new EntryStreamItem(namedProperty.NameIdentifier, new IndexAndKindInformation(propertyIndex, guidIndex, PropertyKind.Lid)));
+
+
+
                 // 3.2.2 of the SPEC Needs to be written, because the stream changes as per named object.
                 entryStream2.Clear();
                 propertyIndex++;
@@ -135,20 +164,37 @@ namespace MsgKit.Streams
 
         #region GenerateStreamString
         /// <summary>
-        ///     Generates the stream strings
+        ///     Generates the stream id of the named properties
         /// </summary>
-        /// <param name="nameIdentifier"></param>
-        /// <param name="guidTarget"></param>
-        /// <param name="propertyKind"></param>
+        /// <param name="namedProperty"></param>
         /// <returns></returns>
-        internal string GenerateStreamString(uint nameIdentifier, uint guidTarget, PropertyKind propertyKind)
+        internal string GenerateStreamName(NamedProperty namedProperty)
         {
-            switch (propertyKind)
+            var guidTarget = GetGuidIndex(namedProperty);
+            var identifier = GenerateNameIdentifier(namedProperty);
+            switch (namedProperty.Kind)
             {
                 case PropertyKind.Lid:
                     return "__substg1.0_" +
-                           (((4096 + (nameIdentifier ^ (guidTarget << 1)) % 0x1F) << 16) | 0x00000102).ToString("X")
+                           (((4096 + (identifier ^ (guidTarget << 1)) % 0x1F) << 16) | 0x00000102).ToString("X")
                            .PadLeft(8, '0');
+                case PropertyKind.Name:
+                    return "__substg1.0_" +
+                       ((4096 + ((identifier ^ (guidTarget << 1 | 1)) % 0x1F) << 16) | 0x00000102).ToString("X")
+                       .PadLeft(8, '0');
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
+        internal ushort GenerateNameIdentifier(NamedProperty namedProperty)
+        {
+            switch (namedProperty.Kind)
+            {
+                case PropertyKind.Lid:
+                    return namedProperty.NameIdentifier;
+                case PropertyKind.Name:
+                    return (ushort) Crc32Algorithm.Compute(Encoding.Unicode.GetBytes(namedProperty.Name));
                 default:
                     throw new NotImplementedException();
             }

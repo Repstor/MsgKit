@@ -65,6 +65,23 @@ namespace MsgKit.Streams
             }
         }
         #endregion
+
+        internal ushort GetItemByteOffset(StringStreamItem item)
+        {
+            if (!this.Contains(item))
+                throw new System.Exception($"Property name {item.Name} has not beend added to the stream");
+
+            var index = this.IndexOf(item);
+            ushort currentOffset = 0;
+            var currentIndex = 0;
+            while(currentIndex < index)
+            {
+                currentOffset = (ushort) (currentOffset + this[currentIndex].TotalBytes);
+                currentIndex++;
+            }
+
+            return currentOffset;
+        }
     }
 
     /// <summary>
@@ -118,9 +135,10 @@ namespace MsgKit.Streams
         /// </summary>
         /// <param name="binaryWriter"></param>
         internal void Write(BinaryWriter binaryWriter)
-        {
-            binaryWriter.Write(Length);
-            binaryWriter.Write(Name);
+        {            
+            var nameBytes = Encoding.Unicode.GetBytes(Name);
+            binaryWriter.Write(nameBytes.Length);
+            binaryWriter.Write(nameBytes);
             var boundry = Get4BytesBoundry(Length);
             var bytes = new byte[boundry];
             binaryWriter.Write(bytes);
@@ -143,6 +161,9 @@ namespace MsgKit.Streams
 
             return length;
         }
+
         #endregion
+
+        internal ushort TotalBytes => (ushort) (4 + Get4BytesBoundry(Length));
     }
 }

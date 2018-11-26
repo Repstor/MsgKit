@@ -142,6 +142,7 @@ namespace MsgKit.Structures
                         size += property.Data.LongLength;
                         break;
 
+                    case PropertyType.PT_MV_STRING8:
                     case PropertyType.PT_STRING8:
                         // Write the length of the property to the propertiesstream
                         binaryWriter.Write(property.Data.Length + 1);
@@ -191,9 +192,6 @@ namespace MsgKit.Structures
 
                     case PropertyType.PT_MV_UNICODE:
                         // PropertyType.PT_MV_TSTRING
-                        break;
-
-                    case PropertyType.PT_MV_STRING8:
                         break;
 
                     case PropertyType.PT_MV_SYSTIME:
@@ -275,11 +273,13 @@ namespace MsgKit.Structures
             var index = 0;
             foreach (var val in values)
             {
+                var nullTerm = nullTerminator(singleValueType);
+                
                 Add(new Property(
                     mapiTag.Id, 
                     mapiTag.Type,
                     flags,
-                    asBytes(singleValueType, val), 
+                    asBytes(singleValueType, val).Concat(nullTerm).ToArray(), 
                     index));
                 index++;
             }
@@ -288,32 +288,47 @@ namespace MsgKit.Structures
 
         private PropertyType GetSingleTypeFromMultiValueType(PropertyType multiValueType) =>
             (PropertyType) Enum.Parse(typeof(PropertyType), multiValueType.ToString().Replace("_MV", ""));
-        
+
+        byte[] nullTerminator(PropertyType t)
+        {
+            switch (t)
+            {
+                case PropertyType.PT_UNICODE:
+                    return new byte[2] { 0, 0 };
+                case PropertyType.PT_STRING8:
+                    return new byte[1] { 0 };
+                default:
+                    return new byte[0];
+            }
+        }
 
         private byte[] asBytes(PropertyType type, object obj)
-        {
-            byte[] nullTerminator(PropertyType t)
-            {
-                switch(t)
-                {
-                    case PropertyType.PT_UNICODE:
-                        return new byte[2] { 0, 0 };
-                    case PropertyType.PT_STRING8:
-                        return new byte[1] { 0 };
-                    default:
-                        return new byte[0];
-                }
-            }
+        {           
 
             byte[] multiValue<TItem>(PropertyType itemType)
             {
                 var values = (TItem[])obj;
                 if (!values.Any()) return null;
-                var byteCount = BitConverter.GetBytes(values.Length);
+
+                var lengthValues = new List<uint>();
                 var nullTerm = nullTerminator(itemType);
-                var result = new byte[byteCount.Length + nullTerm.Length];
-                Array.Copy(byteCount, result, byteCount.Length);
-                Array.Copy(nullTerm, result, nullTerm.Length);
+
+                var byteCount = 4 * values.Length;
+                var result = new byte[byteCount];
+
+                //var zeroBytes = BitConverter.GetBytes((uint)0);
+                var currentIndex = 0;
+                foreach (var val in values)
+                {
+                    var valBytes = asBytes(itemType, val);
+                    var lengthInBytes = BitConverter.GetBytes(
+                        (uint)(valBytes.Length + nullTerm.Length));
+
+
+                    Array.Copy(lengthInBytes, 0, result, currentIndex, lengthInBytes.Length);
+                    currentIndex = currentIndex + lengthInBytes.Length;
+                }
+
                 return result;
             }
 

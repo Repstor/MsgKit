@@ -23,7 +23,8 @@ namespace MsgKit.Streams
         /// </summary>
         internal GuidStream()
         {
-
+            Add(PropertySets.PS_MAPI);
+            Add(PropertySets.PS_PUBLIC_STRINGS);
         }
 
         /// <summary>
