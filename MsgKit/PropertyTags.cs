@@ -4615,7 +4615,10 @@ namespace MsgKit
         /// <returns></returns>
         public string Name
         {
-            get { return PropertyTags.SubStorageStreamPrefix + Id.ToString("X4") + ((ushort)Type).ToString("X4"); }
+            get
+            {
+                return PropertyTags.SubStorageStreamPrefix + Id.ToString("X4") + ((ushort)Type).ToString("X4");
+            }
         }
 
         /// <summary>
@@ -4630,11 +4633,14 @@ namespace MsgKit
         /// </summary>
         /// <param name="id">The id</param>
         /// <param name="type">The <see cref="PropertyType" /></param>
-        internal PropertyTag(ushort id, PropertyType type)
+        internal PropertyTag(ushort id, PropertyType type, bool reverseId = false)
         {
-            Id = id;
+            Id = reverseId 
+                ? (ushort) ((id & 0xFFU) << 8 | (id & 0xFF00U) >> 8)
+                : id;
             Type = type;
         }
+        
         #endregion
     }
 }

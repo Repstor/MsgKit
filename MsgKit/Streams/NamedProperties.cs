@@ -87,7 +87,7 @@ namespace MsgKit.Streams
             };
 
             var nameIdeintifier = GenerateNameIdentifier(namedProperty);
-            _topLevelProperties.AddProperty(new PropertyTag(nameIdeintifier, mapiTag.Type), obj);
+            _topLevelProperties.AddProperty(new PropertyTag(nameIdeintifier, mapiTag.Type, true), obj);
 
             Add(namedProperty);
         }
@@ -119,7 +119,7 @@ namespace MsgKit.Streams
             var entryStream = new EntryStream(storage);
             var stringStream = new StringStream(storage);
             var guidStream = new GuidStream(storage);
-            var entryStream2 = new EntryStream(storage);
+            var nameIdMappingStream = new EntryStream(storage);
 
             ushort propertyIndex = 0;
 
@@ -143,8 +143,8 @@ namespace MsgKit.Streams
                     entryStream.Add(new EntryStreamItem(namedProperty.NameIdentifier, indexAndKind));
                 }
 
-                entryStream2.Add(new EntryStreamItem(GenerateNameIdentifier(namedProperty), indexAndKind));
-                entryStream2.Write(storage, GenerateStreamName(namedProperty));
+                nameIdMappingStream.Add(new EntryStreamItem(GenerateNameIdentifier(namedProperty), indexAndKind));
+                nameIdMappingStream.Write(storage, GenerateStreamName(namedProperty));
 
                 // Dependign on the property type. This is doing name. 
                 //entryStream.Add(new EntryStreamItem(namedProperty.NameIdentifier, new IndexAndKindInformation(propertyIndex, guidIndex, PropertyKind.Lid))); //+3 as per spec.
@@ -153,7 +153,7 @@ namespace MsgKit.Streams
 
 
                 // 3.2.2 of the SPEC Needs to be written, because the stream changes as per named object.
-                entryStream2.Clear();
+                nameIdMappingStream.Clear();
                 propertyIndex++;
             }
 
