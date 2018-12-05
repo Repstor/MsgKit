@@ -2291,6 +2291,18 @@ namespace MsgKit
         }
 
         /// <summary>
+        ///     for emails with inline images that should appear without an attachment icon
+        /// </summary>
+        public static NamedPropertyTag PidLidSmartNoAttach
+        {
+            get
+            {
+                return new NamedPropertyTag(0x8514, "PidLidSmartNoAttach",
+                  PropertySets.PSETID_Common, PropertyType.PT_BOOLEAN);
+            }
+        }
+
+        /// <summary>
         ///     Specifies the filename of the sound that a client is to play when the reminder for that
         ///     object becomes overdue.
         /// </summary>

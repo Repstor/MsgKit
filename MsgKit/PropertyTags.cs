@@ -626,7 +626,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the display name of the messaging user that actually receives the message. UNICODE compilation.
         /// </summary>
-        internal static PropertyTag PR_RECEIVED_BY_NAME_W
+        public static PropertyTag PR_RECEIVED_BY_NAME_W
         {
             get { return new PropertyTag(0x0040, PropertyType.PT_UNICODE); }
         }
@@ -634,7 +634,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the display name of the messaging user that actually receives the message. Non-UNICODE compilation.
         /// </summary>
-        internal static PropertyTag PR_RECEIVED_BY_NAME_A
+        public static PropertyTag PR_RECEIVED_BY_NAME_A
         {
             get { return new PropertyTag(0x0040, PropertyType.PT_STRING8); }
         }
@@ -650,7 +650,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the display name for the messaging user represented by the sender. UNICODE compilation.
         /// </summary>
-        internal static PropertyTag PR_SENT_REPRESENTING_NAME_W
+        public static PropertyTag PR_SENT_REPRESENTING_NAME_W
         {
             get { return new PropertyTag(0x0042, PropertyType.PT_UNICODE); }
         }
@@ -658,7 +658,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the display name for the messaging user represented by the sender. Non-UNICODE compilation.
         /// </summary>
-        internal static PropertyTag PR_SENT_REPRESENTING_NAME_A
+        public static PropertyTag PR_SENT_REPRESENTING_NAME_A
         {
             get { return new PropertyTag(0x0042, PropertyType.PT_STRING8); }
         }
@@ -666,7 +666,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the display name for the messaging user represented by the receiving user. UNICODE compilation.
         /// </summary>
-        internal static PropertyTag PR_RCVD_REPRESENTING_NAME_W
+        public static PropertyTag PR_RCVD_REPRESENTING_NAME_W
         {
             get { return new PropertyTag(0x0044, PropertyType.PT_UNICODE); }
         }
@@ -992,7 +992,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the address type for the messaging user represented by the sender. UNICODE compilation.
         /// </summary>
-        internal static PropertyTag PR_SENT_REPRESENTING_ADDRTYPE_W
+        public static PropertyTag PR_SENT_REPRESENTING_ADDRTYPE_W
         {
             get { return new PropertyTag(0x0064, PropertyType.PT_UNICODE); }
         }
@@ -1000,7 +1000,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the address type for the messaging user represented by the sender. Non-UNICODE compilation.
         /// </summary>
-        internal static PropertyTag PR_SENT_REPRESENTING_ADDRTYPE_A
+        public static PropertyTag PR_SENT_REPRESENTING_ADDRTYPE_A
         {
             get { return new PropertyTag(0x0064, PropertyType.PT_STRING8); }
         }
@@ -1008,7 +1008,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the e-mail address for the messaging user represented by the sender. UNICODE compilation.
         /// </summary>
-        internal static PropertyTag PR_SENT_REPRESENTING_EMAIL_ADDRESS_W
+        public static PropertyTag PR_SENT_REPRESENTING_EMAIL_ADDRESS_W
         {
             get { return new PropertyTag(0x0065, PropertyType.PT_UNICODE); }
         }
@@ -1016,7 +1016,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the e-mail address for the messaging user represented by the sender. Non-UNICODE compilation.
         /// </summary>
-        internal static PropertyTag PR_SENT_REPRESENTING_EMAIL_ADDRESS_A
+        public static PropertyTag PR_SENT_REPRESENTING_EMAIL_ADDRESS_A
         {
             get { return new PropertyTag(0x0065, PropertyType.PT_STRING8); }
         }
@@ -1025,7 +1025,7 @@ namespace MsgKit
         ///     Contains the address type of the sender of the first version of a messagE, that is, the message before being
         ///     forwarded or replied to. UNICODE compilation.
         /// </summary>
-        internal static PropertyTag PR_ORIGINAL_SENDER_ADDRTYPE_W
+        public static PropertyTag PR_ORIGINAL_SENDER_ADDRTYPE_W
         {
             get { return new PropertyTag(0x0066, PropertyType.PT_UNICODE); }
         }
@@ -1034,7 +1034,7 @@ namespace MsgKit
         ///     Contains the address type of the sender of the first version of a messagE, that is, the message before being
         ///     forwarded or replied to. Non-UNICODE compilation.
         /// </summary>
-        internal static PropertyTag PR_ORIGINAL_SENDER_ADDRTYPE_A
+        public static PropertyTag PR_ORIGINAL_SENDER_ADDRTYPE_A
         {
             get { return new PropertyTag(0x0066, PropertyType.PT_STRING8); }
         }
@@ -1172,7 +1172,7 @@ namespace MsgKit
         ///     Contains the e-mail address typE, such as SMTP, for the messaging user that actually receives the message. UNICODE
         ///     compilation.
         /// </summary>
-        internal static PropertyTag PR_RECEIVED_BY_ADDRTYPE_W
+        public static PropertyTag PR_RECEIVED_BY_ADDRTYPE_W
         {
             get { return new PropertyTag(0x0075, PropertyType.PT_UNICODE); }
         }
@@ -1181,7 +1181,7 @@ namespace MsgKit
         ///     Contains the e-mail address typE, such as SMTP, for the messaging user that actually receives the message.
         ///     Non-UNICODE compilation.
         /// </summary>
-        internal static PropertyTag PR_RECEIVED_BY_ADDRTYPE_A
+        public static PropertyTag PR_RECEIVED_BY_ADDRTYPE_A
         {
             get { return new PropertyTag(0x0075, PropertyType.PT_STRING8); }
         }
@@ -1189,7 +1189,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the e-mail address for the messaging user that actually receives the message. UNICODE compilation.
         /// </summary>
-        internal static PropertyTag PR_RECEIVED_BY_EMAIL_ADDRESS_W
+        public static PropertyTag PR_RECEIVED_BY_EMAIL_ADDRESS_W
         {
             get { return new PropertyTag(0x0076, PropertyType.PT_UNICODE); }
         }
@@ -1197,7 +1197,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the e-mail address for the messaging user that actually receives the message. Non-UNICODE compilation.
         /// </summary>
-        internal static PropertyTag PR_RECEIVED_BY_EMAIL_ADDRESS_A
+        public static PropertyTag PR_RECEIVED_BY_EMAIL_ADDRESS_A
         {
             get { return new PropertyTag(0x0076, PropertyType.PT_STRING8); }
         }
@@ -1206,16 +1206,25 @@ namespace MsgKit
         ///     Contains the address type for the messaging user represented by the user actually receiving the message. UNICODE
         ///     compilation.
         /// </summary>
-        internal static PropertyTag PR_RCVD_REPRESENTING_ADDRTYPE_W
+        public static PropertyTag PR_RCVD_REPRESENTING_ADDRTYPE_W
         {
             get { return new PropertyTag(0x0077, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
+        ///     Contains the entry identifier for the messaging user represented by the user receiving the message.
+        /// </summary>
+        internal static PropertyTag PR_RCVD_REPRESENTING_ENTRYID
+        {
+            get { return new PropertyTag(0x0043, PropertyType.PT_BINARY); }
+        }
+
+
+        /// <summary>
         ///     Contains the address type for the messaging user represented by the user actually receiving the message.
         ///     Non-UNICODE compilation.
         /// </summary>
-        internal static PropertyTag PR_RCVD_REPRESENTING_ADDRTYPE_A
+        public static PropertyTag PR_RCVD_REPRESENTING_ADDRTYPE_A
         {
             get { return new PropertyTag(0x0077, PropertyType.PT_STRING8); }
         }
@@ -1223,7 +1232,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the e-mail address for the messaging user represented by the receiving user. UNICODE compilation.
         /// </summary>
-        internal static PropertyTag PR_RCVD_REPRESENTING_EMAIL_ADDRESS_W
+        public static PropertyTag PR_RCVD_REPRESENTING_EMAIL_ADDRESS_W
         {
             get { return new PropertyTag(0x0078, PropertyType.PT_UNICODE); }
         }
@@ -2261,6 +2270,15 @@ namespace MsgKit
             get { return new PropertyTag(0x0FFF, PropertyType.PT_BINARY); }
         }
 
+
+        /// <summary>
+        ///     Specifies item flags
+        /// </summary>
+        public static PropertyTag PR_TODO_ITEM_FLAGS
+        {
+            get { return new PropertyTag(0x0E2B, PropertyType.PT_LONG); }
+        }
+
         /// <summary>
         ///     Contains the type of an object
         /// </summary>
@@ -2375,6 +2393,22 @@ namespace MsgKit
         internal static PropertyTag PR_LAST_VERB_EXECUTION_TIME
         {
             get { return new PropertyTag(0x1082, PropertyType.PT_SYSTIME); }
+        }
+
+        /// <summary>
+        ///     Specifies the flag state of the Message object.
+        /// </summary>
+        public static PropertyTag PR_FLAG_STATUS
+        {
+            get { return new PropertyTag(0x1090, PropertyType.PT_LONG); }
+        }
+
+        /// <summary>
+        ///     Specifies the flag icon of the Message object.
+        /// </summary>
+        public static PropertyTag PR_FLAG_ICON
+        {
+            get { return new PropertyTag(0x1095, PropertyType.PT_LONG); }
         }
 
         /// <summary>

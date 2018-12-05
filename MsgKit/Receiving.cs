@@ -52,6 +52,18 @@ namespace MsgKit
             : base(email, displayName, addressType)
         {
         }
+
+        /// <summary>
+        ///     Creates this object and sets all it's needed properties
+        /// </summary>
+        /// <param name="email">The full E-mail address</param>
+        /// <param name="displayName">The displayname for the <paramref name="email" /></param>
+        /// <param name="addressType">The address type /></param>
+        public Receiving(string email, string displayName, string addressType)
+            : base(email, displayName, addressType)
+        {
+        }
+
         #endregion
 
         #region WriteProperties

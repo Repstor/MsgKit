@@ -33,6 +33,7 @@ using MsgKit.Enums;
 using MsgKit.Helpers;
 using MsgKit.Streams;
 using OpenMcdf;
+using System.Collections.Generic;
 
 // ReSharper disable InconsistentNaming
 
@@ -288,6 +289,16 @@ namespace MsgKit
         ///     Returns or sets the text labels assigned to this Message object
         /// </summary>
         public string[] Categories { get; set; }
+
+        /// <summary>
+        ///     Other property tags, not included in normal list of properties
+        /// </summary>
+        public Dictionary<PropertyTag, object> ExtendedProperties { get; set; } = new Dictionary<PropertyTag, object>();
+
+        /// <summary>
+        ///     Other named property tags, not included in normal list of properties
+        /// </summary>
+        public Dictionary<NamedPropertyTag, object> ExtendedNamedProperties { get; set; } = new Dictionary<NamedPropertyTag, object>();
         #endregion
 
         #region Constructor
@@ -343,6 +354,8 @@ namespace MsgKit
                 LastModifiedOn = DateTime.UtcNow;
 
             TopLevelProperties.AddProperty(PropertyTags.PR_CLIENT_SUBMIT_TIME, SentOn.Value.ToUniversalTime());
+            TopLevelProperties.AddProperty(PropertyTags.PR_ORIGINAL_SUBMIT_TIME, SentOn.Value.ToUniversalTime());
+
             TopLevelProperties.AddProperty(PropertyTags.PR_CREATION_TIME, CreatedOn.Value.ToUniversalTime());
             TopLevelProperties.AddProperty(PropertyTags.PR_LAST_MODIFICATION_TIME, LastModifiedOn.Value.ToUniversalTime());
             TopLevelProperties.AddProperty(PropertyTags.PR_BODY_W, BodyText);
@@ -370,6 +383,16 @@ namespace MsgKit
             TopLevelProperties.AddProperty(PropertyTags.PR_PRIORITY, Priority);
             TopLevelProperties.AddProperty(PropertyTags.PR_IMPORTANCE, Importance);
             TopLevelProperties.AddProperty(PropertyTags.PR_ICON_INDEX, IconIndex);
+
+            foreach(var prop in ExtendedProperties)
+            {
+                TopLevelProperties.AddProperty(prop.Key, prop.Value);
+            }
+
+            foreach(var prop in ExtendedNamedProperties)
+            {
+                NamedProperties.AddProperty(prop.Key, prop.Value);
+            }
 
             /*if (Categories != null && Categories.Any())
                 NamedProperties.AddProperty(NamedPropertyTags.PidNameKeywords, Categories);*/

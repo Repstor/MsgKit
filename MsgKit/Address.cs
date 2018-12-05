@@ -121,6 +121,55 @@ namespace MsgKit
 
             AddressType = addressType;
         }
+
+        /// <summary>
+        ///     Creates this object and sets all it's needed properties
+        /// </summary>
+        /// <param name="email">The full E-mail address</param>
+        /// <param name="displayName">The displayname for the <paramref name="email" /></param>
+        /// <param name="addressType">The <see cref="AddressType" /></param>
+        public Address(string email,
+            string displayName,
+            string addressType)
+        {
+            Email = email ?? string.Empty;
+            DisplayName = string.IsNullOrWhiteSpace(displayName) ? email : displayName;
+
+            switch(addressType)
+            {
+                case "":
+                    AddressType = AddressType.Unknown;
+                    break;
+
+                case "EX":
+                    AddressType = AddressType.Ex;
+                    break;
+
+                case "SMTP":
+                    AddressType = AddressType.Smtp;
+                    break;
+
+                case "FAX":
+                    AddressType = AddressType.Fax;
+                    break;
+
+                case "MHS":
+                    AddressType = AddressType.Mhs;
+                    break;
+
+                case "PROFS":
+                    AddressType = AddressType.Profs;
+                    break;
+
+                case "X400":
+                    AddressType = AddressType.X400;
+                    break;
+
+                default:
+                    AddressType = AddressType.Unknown;
+                    break;
+            }
+        }
         #endregion
     }
 }

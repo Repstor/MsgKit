@@ -73,7 +73,7 @@ namespace MsgKit
         ///     authorization or verification of the delegate. If no messaging user is being represented, these properties should
         ///     be set to the e-mail address contained in the PR_RECEIVED_BY_EMAIL_ADDRESS (PidTagReceivedByEmailAddress) property.
         /// </remarks>
-        public Representing Representing { get; }
+        public Representing Representing { get; set;  }
 
         /// <summary>
         ///     Returns the E-mail <see cref="Recipients" />
@@ -279,10 +279,13 @@ namespace MsgKit
             if (MessageEditorFormat != MessageEditorFormat.EDITOR_FORMAT_DONTKNOW)
                 TopLevelProperties.AddProperty(PropertyTags.PR_MSG_EDITOR_FORMAT, MessageEditorFormat);
 
-            
-
             if (ReceivedOn.HasValue)
+            {
                 TopLevelProperties.AddProperty(PropertyTags.PR_MESSAGE_DELIVERY_TIME, ReceivedOn.Value.ToUniversalTime());
+                TopLevelProperties.AddProperty(PropertyTags.PR_DELIVER_TIME, ReceivedOn.Value.ToUniversalTime());
+                TopLevelProperties.AddProperty(PropertyTags.PR_LATEST_DELIVERY_TIME, ReceivedOn.Value.ToUniversalTime());
+                TopLevelProperties.AddProperty(PropertyTags.PR_RECEIPT_TIME, ReceivedOn.Value.ToUniversalTime());
+            }
 
             TopLevelProperties.AddProperty(PropertyTags.PR_ACCESS, MapiAccess.MAPI_ACCESS_DELETE | MapiAccess.MAPI_ACCESS_MODIFY | MapiAccess.MAPI_ACCESS_READ);
             TopLevelProperties.AddProperty(PropertyTags.PR_ACCESS_LEVEL, MapiAccess.MAPI_ACCESS_MODIFY);

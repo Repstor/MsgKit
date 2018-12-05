@@ -70,6 +70,15 @@ namespace MsgKit
             propertiesStream.AddProperty(PropertyTags.PR_RCVD_REPRESENTING_EMAIL_ADDRESS_W, Email);
             propertiesStream.AddProperty(PropertyTags.PR_RCVD_REPRESENTING_NAME_W, DisplayName);
             propertiesStream.AddProperty(PropertyTags.PR_RCVD_REPRESENTING_ADDRTYPE_W, AddressTypeString);
+
+            var entryId = new OneOffEntryId(Email,
+                                            DisplayName,
+                                            AddressType,
+                                                  MessageFormat.TextAndHtml,
+                                                  false);
+
+            propertiesStream.AddProperty(PropertyTags.PR_RCVD_REPRESENTING_ENTRYID, entryId);
+
         }
         #endregion
     }
