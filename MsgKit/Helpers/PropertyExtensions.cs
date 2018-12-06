@@ -14,13 +14,13 @@ namespace MsgKit.Helpers
         ///     Get the PropertyId as reconised by Exchange REST Api
         /// </summary>
         public static string RestPropertyId(this NamedPropertyTag prop) =>
-             PropertyIdTypeName(prop.Type) + " {" + prop.Guid.ToString() + "} Id " + prop.Id.ToString("X4");
+             $"{PropertyIdTypeName(prop.Type)} 0x{Property.GetPropertyId(prop.Id, prop.Type)}";
 
         /// <summary>
         ///     Get the PropertyId as reconised by Exchange REST Api
         /// </summary>
         public static string RestPropertyId(this PropertyTag prop) =>
-             PropertyIdTypeName(prop.Type) + prop.Id.ToString("X4");
+             $"{PropertyIdTypeName(prop.Type)} 0x{prop.Id.ToString("X4")}";
 
 
         private static string PropertyIdTypeName(PropertyType type)
@@ -44,13 +44,13 @@ namespace MsgKit.Helpers
                 case PropertyType.PT_ERROR:
                     break;
                 case PropertyType.PT_BOOLEAN:
-                    break;
+                    return "Boolean";
                 case PropertyType.PT_OBJECT:
                     break;
                 case PropertyType.PT_LONGLONG:
                     break;
                 case PropertyType.PT_UNICODE:
-                    break;
+                    return "String";
                 case PropertyType.PT_STRING8:
                     return "String";
                 case PropertyType.PT_SYSTIME:

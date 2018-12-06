@@ -49,7 +49,7 @@ namespace MsgKit
         /// <summary>
         ///     The prefix for a <see cref="PropertyTag" /> <see cref="OpenMcdf.CFStream" />
         /// </summary>
-        internal const string SubStorageStreamPrefix = "__substg1.0_";
+        public const string SubStorageStreamPrefix = "__substg1.0_";
 
         /// <summary>
         ///     The name for the properties stream
@@ -1326,7 +1326,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains transport-specific message envelope information. UNICODE compilation.
         /// </summary>
-        internal static PropertyTag PR_TRANSPORT_MESSAGE_HEADERS_W
+        public static PropertyTag PR_TRANSPORT_MESSAGE_HEADERS_W
         {
             get { return new PropertyTag(0x007D, PropertyType.PT_UNICODE); }
         }

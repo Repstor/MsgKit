@@ -52,10 +52,16 @@ namespace MsgKit.Structures
         /// <returns></returns>
         public string Name =>
             PropertyTags.SubStorageStreamPrefix 
-            + Id.ToString("X4") 
-            + ((ushort)Type).ToString("X4")
-            + (MultiValueIndex >= 0 ? "-" + ((uint)MultiValueIndex).ToString("X8") : ""); 
-        
+            + GetPropertyId(Id, Type, MultiValueIndex); 
+
+        /// <summary>
+        ///     Returns the property name, excluding the substorage prefix
+        /// </summary>
+        public static string GetPropertyId(ushort id, PropertyType type, int multiValueIndex = -1) =>
+            id.ToString("X4")
+            + ((ushort)type).ToString("X4")
+            + (multiValueIndex >= 0 ? "-" + ((uint)multiValueIndex).ToString("X8") : "");
+
 
         /// <summary>
         ///     Returns the Property as a readable string without the streamprefix and type

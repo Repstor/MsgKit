@@ -117,7 +117,7 @@ namespace MsgKit
         /// <remarks>
         ///     Corresponds to the message ID field as specified in [RFC2822].<br/><br/>
         ///     If set then this value will be used, when not set the value will be read from the
-        ///     <see cref="TransportMessageHeaders"/> when this property is set
+        ///     <see cref="Message.TransportMessageHeaders"/> when this property is set
         /// </remarks>
         public string InternetMessageId { get; set; }
 
@@ -126,50 +126,19 @@ namespace MsgKit
         /// </summary>
         /// <remarks>
         ///     If set then this value will be used, when not set the value will be read from the
-        ///     <see cref="TransportMessageHeaders"/> when this property is set
+        ///     <see cref="Message.TransportMessageHeaders"/> when this property is set
         /// </remarks>
         public string InternetReferences { get; set; }
-        
+
         /// <summary>
         ///     Returns or sets the original message's PR_INTERNET_MESSAGE_ID (PidTagInternetMessageId) property value
         /// </summary>
         /// <remarks>
         ///     If set then this value will be used, when not set the value will be read from the
-        ///     <see cref="TransportMessageHeaders"/> when this property is set
+        ///     <see cref="Message.TransportMessageHeaders"/> when this property is set
         /// </remarks>
         public string InReplyToId { get; set; }
 
-        /// <summary>
-        ///     Sets or returns the <see cref="TransportMessageHeaders"/> property as a string (text).
-        ///     This property expects the headers as a string 
-        /// </summary>
-        public string TransportMessageHeadersText
-        {
-            set
-            {
-                TransportMessageHeaders = HeaderExtractor.GetHeaders(value);
-            }
-            get { return TransportMessageHeaders != null ? TransportMessageHeaders.ToString() : string.Empty; }
-        }
-
-        /// <summary>
-        ///     Returns or sets the transport message headers. These are only present when
-        ///     the message has been sent outside an Exchange environment to another mailserver
-        ///     <c>null</c> will be returned when not present
-        /// </summary>
-        /// <remarks>
-        ///     Use the <see cref="TransportMessageHeaders"/> property if you want to set
-        ///     the headers directly from a string otherwise see the example code below.
-        /// </remarks>
-        /// <example> 
-        ///     <code>
-        ///     var email = new Email();
-        ///     email.TransportMessageHeaders = new MessageHeader();
-        ///     // ... do something with it, for example
-        ///     email.TransportMessageHeaders.SetHeaderValue("X-MY-CUSTOM-HEADER", "EXAMPLE VALUE");
-        ///     </code>
-        /// </example>
-        public MessageHeader TransportMessageHeaders { get; set; }
 
         /// <summary>
         ///     Returns <c>true</c> when the message is set as a draft message
@@ -247,20 +216,6 @@ namespace MsgKit
             TopLevelProperties.AddProperty(PropertyTags.PR_STORE_SUPPORT_MASK, StoreSupportMaskConst.StoreSupportMask, PropertyFlags.PROPATTR_READABLE);
             TopLevelProperties.AddProperty(PropertyTags.PR_STORE_UNICODE_MASK, StoreSupportMaskConst.StoreSupportMask, PropertyFlags.PROPATTR_READABLE);
             TopLevelProperties.AddProperty(PropertyTags.PR_ALTERNATE_RECIPIENT_ALLOWED, true, PropertyFlags.PROPATTR_READABLE);
-
-            if (TransportMessageHeaders != null)
-            {
-                TopLevelProperties.AddProperty(PropertyTags.PR_TRANSPORT_MESSAGE_HEADERS_W, TransportMessageHeaders.ToString());
-
-                if (!string.IsNullOrWhiteSpace(TransportMessageHeaders.MessageId))
-                    TopLevelProperties.AddProperty(PropertyTags.PR_INTERNET_MESSAGE_ID_W, TransportMessageHeaders.MessageId);
-
-                if (TransportMessageHeaders.References.Any())
-                    TopLevelProperties.AddProperty(PropertyTags.PR_INTERNET_REFERENCES_W, TransportMessageHeaders.References.Last());
-
-                if (TransportMessageHeaders.InReplyTo.Any())
-                    TopLevelProperties.AddProperty(PropertyTags.PR_IN_REPLY_TO_ID_W, TransportMessageHeaders.InReplyTo.Last());
-            }
 
             if (!string.IsNullOrWhiteSpace(InternetMessageId))
                 TopLevelProperties.AddOrReplaceProperty(PropertyTags.PR_INTERNET_MESSAGE_ID_W, InternetMessageId);

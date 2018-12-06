@@ -34,6 +34,8 @@ using MsgKit.Helpers;
 using MsgKit.Streams;
 using OpenMcdf;
 using System.Collections.Generic;
+using System.Globalization;
+using MsgKit.Mime.Header;
 
 // ReSharper disable InconsistentNaming
 
@@ -291,6 +293,11 @@ namespace MsgKit
         public string[] Categories { get; set; }
 
         /// <summary>
+        ///     Culture name, like en-gb
+        /// </summary>
+        public string Culture { get; set; }
+
+        /// <summary>
         ///     Other property tags, not included in normal list of properties
         /// </summary>
         public Dictionary<PropertyTag, object> ExtendedProperties { get; set; } = new Dictionary<PropertyTag, object>();
@@ -299,6 +306,38 @@ namespace MsgKit
         ///     Other named property tags, not included in normal list of properties
         /// </summary>
         public Dictionary<NamedPropertyTag, object> ExtendedNamedProperties { get; set; } = new Dictionary<NamedPropertyTag, object>();
+
+        /// <summary>
+        ///     Sets or returns the <see cref="TransportMessageHeaders"/> property as a string (text).
+        ///     This property expects the headers as a string 
+        /// </summary>
+        public string TransportMessageHeadersText
+        {
+            set
+            {
+                TransportMessageHeaders = HeaderExtractor.GetHeaders(value);
+            }
+            get { return TransportMessageHeaders != null ? TransportMessageHeaders.ToString() : string.Empty; }
+        }
+
+        /// <summary>
+        ///     Returns or sets the transport message headers. These are only present when
+        ///     the message has been sent outside an Exchange environment to another mailserver
+        ///     <c>null</c> will be returned when not present
+        /// </summary>
+        /// <remarks>
+        ///     Use the <see cref="TransportMessageHeaders"/> property if you want to set
+        ///     the headers directly from a string otherwise see the example code below.
+        /// </remarks>
+        /// <example> 
+        ///     <code>
+        ///     var email = new Email();
+        ///     email.TransportMessageHeaders = new MessageHeader();
+        ///     // ... do something with it, for example
+        ///     email.TransportMessageHeaders.SetHeaderValue("X-MY-CUSTOM-HEADER", "EXAMPLE VALUE");
+        ///     </code>
+        /// </example>
+        public MessageHeader TransportMessageHeaders { get; set; }
         #endregion
 
         #region Constructor
@@ -383,8 +422,23 @@ namespace MsgKit
             TopLevelProperties.AddProperty(PropertyTags.PR_PRIORITY, Priority);
             TopLevelProperties.AddProperty(PropertyTags.PR_IMPORTANCE, Importance);
             TopLevelProperties.AddProperty(PropertyTags.PR_ICON_INDEX, IconIndex);
+            SetCulture();
 
-            foreach(var prop in ExtendedProperties)
+            if (TransportMessageHeaders != null)
+            {
+                TopLevelProperties.AddProperty(PropertyTags.PR_TRANSPORT_MESSAGE_HEADERS_W, TransportMessageHeaders.ToString());
+
+                if (!string.IsNullOrWhiteSpace(TransportMessageHeaders.MessageId))
+                    TopLevelProperties.AddProperty(PropertyTags.PR_INTERNET_MESSAGE_ID_W, TransportMessageHeaders.MessageId);
+
+                if (TransportMessageHeaders.References.Any())
+                    TopLevelProperties.AddProperty(PropertyTags.PR_INTERNET_REFERENCES_W, TransportMessageHeaders.References.Last());
+
+                if (TransportMessageHeaders.InReplyTo.Any())
+                    TopLevelProperties.AddProperty(PropertyTags.PR_IN_REPLY_TO_ID_W, TransportMessageHeaders.InReplyTo.Last());
+            }
+
+            foreach (var prop in ExtendedProperties)
             {
                 TopLevelProperties.AddProperty(prop.Key, prop.Value);
             }
@@ -455,6 +509,22 @@ namespace MsgKit
 
             if (SubjectPrefix == null) SubjectPrefix = string.Empty;
         }
+
+        internal void SetCulture()
+        {
+            if (string.IsNullOrWhiteSpace(Culture))
+            {
+                return;
+            }
+            try
+            {
+                var info = CultureInfo.GetCultureInfo(Culture);
+                TopLevelProperties.AddProperty(PropertyTags.PR_MESSAGE_LOCALE_ID, (uint)info.LCID);
+            }
+            catch (System.Exception)
+            { }
+        }
+
         #endregion
 
         #region Save
