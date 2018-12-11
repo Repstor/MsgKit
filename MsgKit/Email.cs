@@ -101,7 +101,7 @@ namespace MsgKit
         ///     authorization or verification of the delegate. If no messaging user is being represented, these properties should 
         ///     be set to the e-mail address contained in the PR_RECEIVED_BY_EMAIL_ADDRESS (PidTagReceivedByEmailAddress) property.
         /// </remarks>
-        public ReceivingRepresenting ReceivingRepresenting { get; internal set; }
+        public ReceivingRepresenting ReceivingRepresenting { get; set; }
 
         /// <summary>
         ///     Returns the UTC date and time when the <see cref="Message"/> was received
@@ -252,7 +252,6 @@ namespace MsgKit
 
             // TODO: Change modification time when this message is opened and only modified
             var utcNow = DateTime.UtcNow;
-            TopLevelProperties.AddProperty(PropertyTags.PR_MESSAGE_LOCALE_ID, CultureInfo.CurrentCulture.LCID);
 
             if (Draft)
             {
@@ -306,8 +305,16 @@ namespace MsgKit
                 TopLevelProperties.AddProperty(PropertyTags.PR_DISPLAY_TO_W, string.Join(";", displayTo), PropertyFlags.PROPATTR_READABLE);
                 TopLevelProperties.AddProperty(PropertyTags.PR_DISPLAY_CC_W, string.Join(";", displayCc), PropertyFlags.PROPATTR_READABLE);
                 TopLevelProperties.AddProperty(PropertyTags.PR_DISPLAY_BCC_W, string.Join(";", displayBcc), PropertyFlags.PROPATTR_READABLE);
+
+                AddExtendedProperties();
             }
         }
+
+        private void SetIcon()
+        {
+            
+        }
+
         #endregion
 
         #region Save

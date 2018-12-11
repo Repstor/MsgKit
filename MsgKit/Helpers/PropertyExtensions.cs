@@ -64,7 +64,7 @@ namespace MsgKit.Helpers
                 case PropertyType.PT_ACTIONS:
                     break;
                 case PropertyType.PT_BINARY:
-                    break;
+                    return "Binary";
                 case PropertyType.PT_MV_SHORT:
                     return "IntegerArray";
                 case PropertyType.PT_MV_LONG:

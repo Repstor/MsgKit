@@ -618,7 +618,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the entry identifier of the messaging user that actually receives the message.
         /// </summary>
-        internal static PropertyTag PR_RECEIVED_BY_ENTRYID
+        public static PropertyTag PR_RECEIVED_BY_ENTRYID
         {
             get { return new PropertyTag(0x003F, PropertyType.PT_BINARY); }
         }
@@ -642,7 +642,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the entry identifier for the messaging user represented by the sender.
         /// </summary>
-        internal static PropertyTag PR_SENT_REPRESENTING_ENTRYID
+        public static PropertyTag PR_SENT_REPRESENTING_ENTRYID
         {
             get { return new PropertyTag(0x0041, PropertyType.PT_BINARY); }
         }
@@ -1214,7 +1214,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the entry identifier for the messaging user represented by the user receiving the message.
         /// </summary>
-        internal static PropertyTag PR_RCVD_REPRESENTING_ENTRYID
+        public static PropertyTag PR_RCVD_REPRESENTING_ENTRYID
         {
             get { return new PropertyTag(0x0043, PropertyType.PT_BINARY); }
         }
@@ -1818,15 +1818,23 @@ namespace MsgKit
         /// <summary>
         ///     Contains the message sender's entry identifier.
         /// </summary>
-        internal static PropertyTag PR_SENDER_ENTRYID
+        public static PropertyTag PR_SENDER_ENTRYID
         {
             get { return new PropertyTag(0x0C19, PropertyType.PT_BINARY); }
         }
 
         /// <summary>
+        ///     Contains the message sender's SID.
+        /// </summary>
+        public static PropertyTag PR_SENDER_SID
+        {
+            get { return new PropertyTag(0x0E4D, PropertyType.PT_BINARY); }
+        }
+
+        /// <summary>
         ///     Contains the message sender's display name. UNICODE compilation.
         /// </summary>
-        internal static PropertyTag PR_SENDER_NAME_W
+        public static PropertyTag PR_SENDER_NAME_W
         {
             get { return new PropertyTag(0x0C1A, PropertyType.PT_UNICODE); }
         }
@@ -1886,7 +1894,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the message sender's e-mail address type. UNICODE compilation.
         /// </summary>
-        internal static PropertyTag PR_SENDER_ADDRTYPE_W
+        public static PropertyTag PR_SENDER_ADDRTYPE_W
         {
             get { return new PropertyTag(0x0C1E, PropertyType.PT_UNICODE); }
         }
@@ -1902,7 +1910,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the message sender's e-mail address, encoded in Unicode standard.
         /// </summary>
-        internal static PropertyTag PR_SENDER_EMAIL_ADDRESS_W
+        public static PropertyTag PR_SENDER_EMAIL_ADDRESS_W
         {
             get { return new PropertyTag(0x0C1F, PropertyType.PT_UNICODE); }
         }
@@ -2012,7 +2020,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains a bitmask of flags indicating the origin and current state of a message.
         /// </summary>
-        internal static PropertyTag PR_MESSAGE_FLAGS
+        public static PropertyTag PR_MESSAGE_FLAGS
         {
             get { return new PropertyTag(0x0E07, PropertyType.PT_LONG); }
         }
@@ -4578,6 +4586,14 @@ namespace MsgKit
         }
 
         /// <summary>
+        ///     The senders skype id
+        /// </summary>
+        public static PropertyTag PR_Sender_Sip
+        {
+            get { return new PropertyTag(0x5FE5, PropertyType.PT_UNICODE); }
+        }
+
+        /// <summary>
         ///     Indicates the type of Message object to which this attachment is linked.
         /// </summary>
         /// <remarks>
@@ -4667,7 +4683,7 @@ namespace MsgKit
         /// </summary>
         /// <param name="id">The id</param>
         /// <param name="type">The <see cref="PropertyType" /></param>
-        internal PropertyTag(ushort id, PropertyType type, bool reverseId = false)
+        public PropertyTag(ushort id, PropertyType type, bool reverseId = false)
         {
             Id = reverseId 
                 ? (ushort) ((id & 0xFFU) << 8 | (id & 0xFF00U) >> 8)

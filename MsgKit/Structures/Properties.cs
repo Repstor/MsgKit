@@ -254,8 +254,13 @@ namespace MsgKit.Structures
             //throw new ArgumentNullException("mapiTag", "Obj can not be null");
 
             var data = asBytes(mapiTag.Type, obj);
-            
+
+            var existingProp = this.FirstOrDefault(p => p.Id == mapiTag.Id && p.Type == mapiTag.Type);
+            if (existingProp != null)
+                this.Remove(existingProp);
+
             Add(new Property(mapiTag.Id, mapiTag.Type, flags, data));
+            
 
             if(isMultiValue(mapiTag.Type))
             {

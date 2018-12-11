@@ -64,13 +64,36 @@ namespace MsgKit
         /// </summary>
         /// <param name="email">The full E-mail address</param>
         /// <param name="displayName">The displayname for the <paramref name="email" /></param>
-        /// <param name="addressType">The <see cref="Address.AddressType" /></param>
+        /// <param name="addressType">The address type</param>
         /// <param name="messageFormat"><see cref="MessageFormat"/></param>
         /// <param name="canLookupEmailAddress">Indicates that the <paramref name="email"/> address 
         /// can be lookup in the addressbook. This parameter is only usefull when opening E-mails in an Exchange environment</param>
         /// <param name="senderIsCreator">Set to <c>true</c> when the sender is also the creator of the message (default <c>true</c>)</param>
         public Sender(string email, 
                       string displayName, 
+                      string addressType,
+                      MessageFormat messageFormat = MessageFormat.TextAndHtml,
+                      bool canLookupEmailAddress = false,
+                      bool senderIsCreator = true)
+            : base(email, displayName, addressType)
+        {
+            _messageFormat = messageFormat;
+            _canLookupEmailAddress = canLookupEmailAddress;
+            _senderIsCreator = senderIsCreator;
+        }
+
+        /// <summary>
+        ///     Creates this object and sets all it's needed properties
+        /// </summary>
+        /// <param name="email">The full E-mail address</param>
+        /// <param name="displayName">The displayname for the <paramref name="email" /></param>
+        /// <param name="addressType">The <see cref="Address.AddressType" /></param>
+        /// <param name="messageFormat"><see cref="MessageFormat"/></param>
+        /// <param name="canLookupEmailAddress">Indicates that the <paramref name="email"/> address 
+        /// can be lookup in the addressbook. This parameter is only usefull when opening E-mails in an Exchange environment</param>
+        /// <param name="senderIsCreator">Set to <c>true</c> when the sender is also the creator of the message (default <c>true</c>)</param>
+        public Sender(string email,
+                      string displayName,
                       AddressType addressType = AddressType.Smtp,
                       MessageFormat messageFormat = MessageFormat.TextAndHtml,
                       bool canLookupEmailAddress = false,
@@ -108,7 +131,7 @@ namespace MsgKit
                                                   _messageFormat, 
                                                   _canLookupEmailAddress);
 
-            propertiesStream.AddProperty(PropertyTags.PR_SENDER_ENTRYID, senderEntryId.ToByteArray());
+            //propertiesStream.AddProperty(PropertyTags.PR_SENDER_ENTRYID, senderEntryId.ToByteArray());
 
             propertiesStream.AddProperty(PropertyTags.PR_SENDER_EMAIL_ADDRESS_W, Email);
             propertiesStream.AddProperty(PropertyTags.PR_SENDER_NAME_W, DisplayName);

@@ -397,19 +397,20 @@ namespace MsgKit
 
             TopLevelProperties.AddProperty(PropertyTags.PR_CREATION_TIME, CreatedOn.Value.ToUniversalTime());
             TopLevelProperties.AddProperty(PropertyTags.PR_LAST_MODIFICATION_TIME, LastModifiedOn.Value.ToUniversalTime());
-            TopLevelProperties.AddProperty(PropertyTags.PR_BODY_W, BodyText);
 
-            if (string.IsNullOrWhiteSpace(BodyRtf) && !string.IsNullOrWhiteSpace(BodyHtml))
+            /*if (string.IsNullOrWhiteSpace(BodyRtf) && !string.IsNullOrWhiteSpace(BodyHtml))
             {
                 BodyRtf = Strings.GetEscapedRtf(BodyHtml);
                 BodyRtfCompressed = true;
-            }
+            }*/
 
             if (!string.IsNullOrWhiteSpace(BodyRtf))
             {
                 TopLevelProperties.AddProperty(PropertyTags.PR_RTF_COMPRESSED, new RtfCompressor().Compress(Encoding.ASCII.GetBytes(BodyRtf)));
                 TopLevelProperties.AddProperty(PropertyTags.PR_RTF_IN_SYNC, BodyRtfCompressed);
             }
+
+            TopLevelProperties.AddProperty(PropertyTags.PR_BODY_W, BodyText);
 
             SetSubject();
             TopLevelProperties.AddProperty(PropertyTags.PR_SUBJECT_W, Subject);
@@ -438,15 +439,7 @@ namespace MsgKit
                     TopLevelProperties.AddProperty(PropertyTags.PR_IN_REPLY_TO_ID_W, TransportMessageHeaders.InReplyTo.Last());
             }
 
-            foreach (var prop in ExtendedProperties)
-            {
-                TopLevelProperties.AddProperty(prop.Key, prop.Value);
-            }
-
-            foreach(var prop in ExtendedNamedProperties)
-            {
-                NamedProperties.AddProperty(prop.Key, prop.Value);
-            }
+           
 
             /*if (Categories != null && Categories.Any())
                 NamedProperties.AddProperty(NamedPropertyTags.PidNameKeywords, Categories);*/
@@ -454,6 +447,22 @@ namespace MsgKit
             /*if (Categories != null && Categories.Any())
                 NamedProperties.AddProperty(NamedPropertyTags.PidLidCategories, Categories);*/
 
+        }
+
+        /// <summary>
+        ///     Writes extended properties.... should be called after super class write.
+        /// </summary>
+        protected void AddExtendedProperties()
+        {
+            foreach (var prop in ExtendedProperties)
+            {
+                TopLevelProperties.AddProperty(prop.Key, prop.Value);
+            }
+
+            foreach (var prop in ExtendedNamedProperties)
+            {
+                NamedProperties.AddProperty(prop.Key, prop.Value);
+            }
         }
         #endregion
 
