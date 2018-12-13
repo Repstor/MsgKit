@@ -1127,6 +1127,14 @@ namespace MsgKit
         /// <summary>
         ///     Contains the topic of the first message in a conversation thread. UNICODE compilation.
         /// </summary>
+        public static PropertyTag PR_CONVERSATION_ID
+        {
+            get { return new PropertyTag(0x3013, PropertyType.PT_BINARY); }
+        }
+
+        /// <summary>
+        ///     Contains the topic of the first message in a conversation thread. UNICODE compilation.
+        /// </summary>
         public static PropertyTag PR_CONVERSATION_TOPIC_W
         {
             get { return new PropertyTag(0x0070, PropertyType.PT_UNICODE); }
