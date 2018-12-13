@@ -578,9 +578,17 @@ namespace MsgKit
         /// <summary>
         ///     Contains the search key for the messaging user represented by the sender.
         /// </summary>
-        internal static PropertyTag PR_SENT_REPRESENTING_SEARCH_KEY
+        public static PropertyTag PR_SENT_REPRESENTING_SEARCH_KEY
         {
             get { return new PropertyTag(0x003B, PropertyType.PT_BINARY); }
+        }
+
+        /// <summary>
+        ///     Sent representing SID
+        /// </summary>
+        public static PropertyTag PR_SENT_REPRESENTING_SID
+        {
+            get { return new PropertyTag(0x0E4E, PropertyType.PT_BINARY); }
         }
 
         /// <summary>
@@ -656,6 +664,14 @@ namespace MsgKit
         }
 
         /// <summary>
+        ///     Contains the display name for the messaging user represented by the sender. UNICODE compilation.
+        /// </summary>
+        public static PropertyTag PR_SentRepresentingSimpleDispName_W
+        {
+            get { return new PropertyTag(0x4031, PropertyType.PT_UNICODE); }
+        }
+
+        /// <summary>
         ///     Contains the display name for the messaging user represented by the sender. Non-UNICODE compilation.
         /// </summary>
         public static PropertyTag PR_SENT_REPRESENTING_NAME_A
@@ -669,6 +685,22 @@ namespace MsgKit
         public static PropertyTag PR_RCVD_REPRESENTING_NAME_W
         {
             get { return new PropertyTag(0x0044, PropertyType.PT_UNICODE); }
+        }
+
+        /// <summary>
+        ///     Contains the display name for the messaging user represented by the receiving user. UNICODE compilation.
+        /// </summary>
+        public static PropertyTag PR_RcvdBySimpleDispName_W
+        {
+            get { return new PropertyTag(0x4034, PropertyType.PT_UNICODE); }
+        }
+
+        /// <summary>
+        ///     Contains the display name for the messaging user represented by the receiving user. UNICODE compilation.
+        /// </summary>
+        public static PropertyTag PR_RcvdRepresentingSimpleDispName_W
+        {
+            get { return new PropertyTag(0x4035, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>
@@ -814,7 +846,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the search key of the messaging user that actually receives the message.
         /// </summary>
-        internal static PropertyTag PR_RECEIVED_BY_SEARCH_KEY
+        public static PropertyTag PR_RECEIVED_BY_SEARCH_KEY
         {
             get { return new PropertyTag(0x0051, PropertyType.PT_BINARY); }
         }
@@ -822,7 +854,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the search key for the messaging user represented by the receiving user.
         /// </summary>
-        internal static PropertyTag PR_RCVD_REPRESENTING_SEARCH_KEY
+        public static PropertyTag PR_RCVD_REPRESENTING_SEARCH_KEY
         {
             get { return new PropertyTag(0x0052, PropertyType.PT_BINARY); }
         }
@@ -865,7 +897,7 @@ namespace MsgKit
         ///     Contains TRUE if this messaging user is specifically named as a primary (To) recipient of this message and is not
         ///     part of a distribution list.
         /// </summary>
-        internal static PropertyTag PR_MESSAGE_TO_ME
+        public static PropertyTag PR_MESSAGE_TO_ME
         {
             get { return new PropertyTag(0x0057, PropertyType.PT_BOOLEAN); }
         }
@@ -874,7 +906,7 @@ namespace MsgKit
         ///     Contains TRUE if this messaging user is specifically named as a carbon copy (CC) recipient of this message and is
         ///     not part of a distribution list.
         /// </summary>
-        internal static PropertyTag PR_MESSAGE_CC_ME
+        public static PropertyTag PR_MESSAGE_CC_ME
         {
             get { return new PropertyTag(0x0058, PropertyType.PT_BOOLEAN); }
         }
@@ -883,7 +915,7 @@ namespace MsgKit
         ///     Contains TRUE if this messaging user is specifically named as a primary (To), carbon copy (CC), or blind carbon
         ///     copy (BCC) recipient of this message and is not part of a distribution list.
         /// </summary>
-        internal static PropertyTag PR_MESSAGE_RECIP_ME
+        public static PropertyTag PR_MESSAGE_RECIP_ME
         {
             get { return new PropertyTag(0x0059, PropertyType.PT_BOOLEAN); }
         }
@@ -1095,7 +1127,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the topic of the first message in a conversation thread. UNICODE compilation.
         /// </summary>
-        internal static PropertyTag PR_CONVERSATION_TOPIC_W
+        public static PropertyTag PR_CONVERSATION_TOPIC_W
         {
             get { return new PropertyTag(0x0070, PropertyType.PT_UNICODE); }
         }
@@ -1114,7 +1146,7 @@ namespace MsgKit
         /// <remarks>
         ///     See https://msdn.microsoft.com/en-us/library/office/cc842470.aspx
         /// </remarks>
-        internal static PropertyTag PR_CONVERSATION_INDEX
+        public static PropertyTag PR_CONVERSATION_INDEX
         {
             get { return new PropertyTag(0x0071, PropertyType.PT_BINARY); }
         }
@@ -1886,7 +1918,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the message sender's search key.
         /// </summary>
-        internal static PropertyTag PR_SENDER_SEARCH_KEY
+        public static PropertyTag PR_SENDER_SEARCH_KEY
         {
             get { return new PropertyTag(0x0C1D, PropertyType.PT_BINARY); }
         }
@@ -4531,7 +4563,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the Windows LCID of the end user who created this message.
         /// </summary>
-        internal static PropertyTag PR_MESSAGE_LOCALE_ID
+        public static PropertyTag PR_MESSAGE_LOCALE_ID
         {
             get { return new PropertyTag(0x3F08, PropertyType.PT_LONG); }
         }
@@ -4591,6 +4623,30 @@ namespace MsgKit
         public static PropertyTag PR_Sender_Sip
         {
             get { return new PropertyTag(0x5FE5, PropertyType.PT_UNICODE); }
+        }
+
+        /// <summary>
+        ///    The senders SMTP address
+        /// </summary>
+        public static PropertyTag PR_SenderSmtpAddress_W
+        {
+            get { return new PropertyTag(0x5D01, PropertyType.PT_UNICODE); }
+        }
+
+        /// <summary>
+        ///    The sender representing SMTP address
+        /// </summary>
+        public static PropertyTag PR_SENT_REPRESENTING_SMTP_ADDRESS_W
+        {
+            get { return new PropertyTag(0x5D02, PropertyType.PT_UNICODE); }
+        }
+
+        /// <summary>
+        ///    The sender representing SMTP address
+        /// </summary>
+        public static PropertyTag PR_ReceivedRepresentingSmtpAddress
+        {
+            get { return new PropertyTag(0x5D08, PropertyType.PT_UNICODE); }
         }
 
         /// <summary>

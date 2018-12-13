@@ -49,11 +49,6 @@ namespace MsgKit.Structures
         /// </summary>
         private readonly MessageFormat _messageFormat;
 
-        /// <summary>
-        ///     A flag that indicates whether the server can look up an address in the
-        ///     address book
-        /// </summary>
-        private readonly bool _canLookupEmailAddress;
         #endregion
 
         #region Constructor
@@ -71,8 +66,21 @@ namespace MsgKit.Structures
             MessageFormat messageFormat = MessageFormat.TextAndHtml,
             bool canLookupEmailAddress = false) : base(email, displayName, addressType)
         {
-            _messageFormat = messageFormat;
-            _canLookupEmailAddress = canLookupEmailAddress;
+        }
+
+        /// <summary>
+        ///     Creates this object and sets all it's needed properties
+        /// </summary>
+        /// <param name="email">The full E-mail address</param>
+        /// <param name="displayName">The displayname for the <paramref name="email" /></param>
+        /// <param name="addressType">The <see cref="Address.AddressType" /></param>
+        /// <param name="messageFormat"><see cref="MessageFormat"/></param>
+        /// <param name="canLookupEmailAddress"></param>
+        public OneOffEntryId(string email,
+            string displayName,
+            string addressType,
+            bool canLookupEmailAddress) : base(email, displayName, addressType, canLookupEmailAddress)
+        {
         }
         #endregion
 
@@ -154,7 +162,7 @@ namespace MsgKit.Structures
                 // L (1 bit): (mask 0x0010) A flag that indicates whether the server can look up an address in the address 
                 // book. If b'1', server cannot look up this user's email address in the address book. If b'0', server can 
                 // look up this user's email address in the address book.
-                bitArray.Set(11, _canLookupEmailAddress);
+                bitArray.Set(11, CanLookupEmailAddress);
                 // Pad (4 bits): (mask 0x000F) Reserved. This value is set to b'0000'.
                 bitArray.Set(12, false);
                 bitArray.Set(13, false);

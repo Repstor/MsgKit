@@ -47,12 +47,6 @@ namespace MsgKit
         private readonly MessageFormat _messageFormat;
 
         /// <summary>
-        ///     A flag that indicates whether the server can look up an address in the
-        ///     address book
-        /// </summary>
-        private readonly bool _canLookupEmailAddress;
-
-        /// <summary>
         ///     Set to <c>true</c> when the sender is also the creator of the message (default <c>true</c>)
         /// </summary>
         private readonly bool _senderIsCreator;
@@ -75,10 +69,9 @@ namespace MsgKit
                       MessageFormat messageFormat = MessageFormat.TextAndHtml,
                       bool canLookupEmailAddress = false,
                       bool senderIsCreator = true)
-            : base(email, displayName, addressType)
+            : base(email, displayName, addressType, canLookupEmailAddress)
         {
             _messageFormat = messageFormat;
-            _canLookupEmailAddress = canLookupEmailAddress;
             _senderIsCreator = senderIsCreator;
         }
 
@@ -101,7 +94,6 @@ namespace MsgKit
             : base(email, displayName, addressType)
         {
             _messageFormat = messageFormat;
-            _canLookupEmailAddress = canLookupEmailAddress;
             _senderIsCreator = senderIsCreator;
         }
         #endregion
@@ -129,13 +121,14 @@ namespace MsgKit
                                                   DisplayName, 
                                                   AddressType, 
                                                   _messageFormat, 
-                                                  _canLookupEmailAddress);
+                                                  CanLookupEmailAddress);
 
-            //propertiesStream.AddProperty(PropertyTags.PR_SENDER_ENTRYID, senderEntryId.ToByteArray());
+            propertiesStream.AddProperty(PropertyTags.PR_SENDER_ENTRYID, senderEntryId.ToByteArray());
 
             propertiesStream.AddProperty(PropertyTags.PR_SENDER_EMAIL_ADDRESS_W, Email);
             propertiesStream.AddProperty(PropertyTags.PR_SENDER_NAME_W, DisplayName);
             propertiesStream.AddProperty(PropertyTags.PR_SENDER_ADDRTYPE_W, AddressTypeString);
+            propertiesStream.AddProperty(PropertyTags.PR_SenderSimpleDispName_W, DisplayName);
         }
         #endregion
     }

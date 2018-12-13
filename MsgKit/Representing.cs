@@ -61,8 +61,9 @@ namespace MsgKit
         /// <param name="email">The full E-mail address</param>
         /// <param name="displayName">The displayname for the <paramref name="email" /></param>
         /// <param name="addressType">The address type /></param>
-        public Representing(string email, string displayName, string addressType )
-            : base(email, displayName, addressType)
+        /// <param name="canLookupEmailAddress">Can lookup email addres in addressbook /></param>
+        public Representing(string email, string displayName, string addressType, bool canLookupEmailAddress )
+            : base(email, displayName, addressType, canLookupEmailAddress)
         {
         }
         #endregion
@@ -87,10 +88,12 @@ namespace MsgKit
                                                   DisplayName,
                                                   AddressType,
                                                   MessageFormat.TextAndHtml,
-                                                  false);
+                                                  CanLookupEmailAddress);
 
 
             propertiesStream.AddProperty(PropertyTags.PR_SENT_REPRESENTING_ENTRYID, senderEntryId.ToByteArray());
+            propertiesStream.AddProperty(PropertyTags.PR_SentRepresentingSimpleDispName_W, DisplayName);
+            propertiesStream.AddProperty(PropertyTags.PR_SentRepresentingSimpleDispName_W, DisplayName);
         }
         #endregion
     }

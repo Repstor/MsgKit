@@ -59,8 +59,9 @@ namespace MsgKit
         /// <param name="email">The full E-mail address</param>
         /// <param name="displayName">The displayname for the <paramref name="email" /></param>
         /// <param name="addressType">The address type /></param>
-        public Receiving(string email, string displayName, string addressType)
-            : base(email, displayName, addressType)
+        /// <param name="canLookupEmail">can lookup email address in address book /></param>
+        public Receiving(string email, string displayName, string addressType, bool canLookupEmail)
+            : base(email, displayName, addressType, canLookupEmail)
         {
         }
 
@@ -80,6 +81,7 @@ namespace MsgKit
         {
             propertiesStream.AddProperty(PropertyTags.PR_RECEIVED_BY_EMAIL_ADDRESS_W, Email);
             propertiesStream.AddProperty(PropertyTags.PR_RECEIVED_BY_NAME_W, DisplayName);
+            propertiesStream.AddProperty(PropertyTags.PR_RcvdBySimpleDispName_W, DisplayName);
             propertiesStream.AddProperty(PropertyTags.PR_RECEIVED_BY_ADDRTYPE_W, AddressTypeString);
         }
         #endregion

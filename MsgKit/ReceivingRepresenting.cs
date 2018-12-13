@@ -60,8 +60,9 @@ namespace MsgKit
         /// <param name="email">The full E-mail address</param>
         /// <param name="displayName">The displayname for the <paramref name="email" /></param>
         /// <param name="addressType">The <see cref="Address.AddressType" /></param>
-        public ReceivingRepresenting(string email, string displayName, string addressType)
-            : base(email, displayName, addressType)
+        /// <param name="canLookupEmailAddress">can lookup email in address book</param>
+        public ReceivingRepresenting(string email, string displayName, string addressType, bool canLookupEmailAddress)
+            : base(email, displayName, addressType, canLookupEmailAddress)
         {
         }
         #endregion
@@ -80,6 +81,7 @@ namespace MsgKit
         {
             propertiesStream.AddProperty(PropertyTags.PR_RCVD_REPRESENTING_EMAIL_ADDRESS_W, Email);
             propertiesStream.AddProperty(PropertyTags.PR_RCVD_REPRESENTING_NAME_W, DisplayName);
+            propertiesStream.AddProperty(PropertyTags.PR_RcvdRepresentingSimpleDispName_W, DisplayName);
             propertiesStream.AddProperty(PropertyTags.PR_RCVD_REPRESENTING_ADDRTYPE_W, AddressTypeString);
 
             var entryId = new OneOffEntryId(Email,

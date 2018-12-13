@@ -103,6 +103,11 @@ namespace MsgKit
         ///     Returns the <see cref="Enums.AddressType"/> as a string
         /// </summary>
         public string AddressTypeString { get; private set; }
+
+        /// <summary>
+        ///     Can lookup email address in address book
+        /// </summary>
+        public bool CanLookupEmailAddress { get; private set; }
         #endregion
         
         #region Constructor
@@ -130,12 +135,14 @@ namespace MsgKit
         /// <param name="addressType">The <see cref="AddressType" /></param>
         public Address(string email,
             string displayName,
-            string addressType)
+            string addressType,
+            bool canLookupEmailAddress)
         {
             Email = email ?? string.Empty;
             DisplayName = string.IsNullOrWhiteSpace(displayName) ? email : displayName;
+            CanLookupEmailAddress = canLookupEmailAddress;
 
-            switch(addressType)
+            switch (addressType)
             {
                 case "":
                     AddressType = AddressType.Unknown;
