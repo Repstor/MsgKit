@@ -154,7 +154,7 @@ namespace MsgKit.Streams
         /// </summary>
         /// <param name="nameIdentifierOrStringOffset"><see cref="NameIdentifierOrStringOffset"/></param>
         /// <param name="indexAndKindInformation"><see cref="IndexAndKindInformation"/></param>
-        internal EntryStreamItem(ushort nameIdentifierOrStringOffset,
+        internal EntryStreamItem(uint nameIdentifierOrStringOffset,
                                  IndexAndKindInformation indexAndKindInformation)
         {
             NameIdentifierOrStringOffset = nameIdentifierOrStringOffset;
@@ -267,8 +267,8 @@ namespace MsgKit.Streams
         /// <param name="binaryWriter"></param>
         internal void Write(BinaryWriter binaryWriter)
         {
+            binaryWriter.Write((ushort)((GuidIndex << 1) + PropertyKind));
             binaryWriter.Write(PropertyIndex);
-            binaryWriter.Write((ushort)((GuidIndex << 1) + 1));
         }
         #endregion
     }
