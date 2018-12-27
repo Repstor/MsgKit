@@ -397,6 +397,7 @@ namespace MsgKit
 
             TopLevelProperties.AddProperty(PropertyTags.PR_CREATION_TIME, CreatedOn.Value.ToUniversalTime());
             TopLevelProperties.AddProperty(PropertyTags.PR_LAST_MODIFICATION_TIME, LastModifiedOn.Value.ToUniversalTime());
+            
 
             /*if (string.IsNullOrWhiteSpace(BodyRtf) && !string.IsNullOrWhiteSpace(BodyHtml))
             {
@@ -404,6 +405,7 @@ namespace MsgKit
                 BodyRtfCompressed = true;
             }*/
 
+            
             if (!string.IsNullOrWhiteSpace(BodyRtf))
             {
                 TopLevelProperties.AddProperty(PropertyTags.PR_RTF_COMPRESSED, new RtfCompressor().Compress(Encoding.ASCII.GetBytes(BodyRtf)));
@@ -437,9 +439,7 @@ namespace MsgKit
 
                 if (TransportMessageHeaders.InReplyTo.Any())
                     TopLevelProperties.AddProperty(PropertyTags.PR_IN_REPLY_TO_ID_W, TransportMessageHeaders.InReplyTo.Last());
-            }
-
-           
+            }           
             
             if (Categories != null && Categories.Any())
                 NamedProperties.AddProperty(NamedPropertyTags.PidNameKeywords, Categories);

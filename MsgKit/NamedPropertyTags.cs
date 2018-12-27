@@ -3581,7 +3581,7 @@ namespace MsgKit
         public static NamedPropertyTag PidNameKeywords
         {
             get { return new NamedPropertyTag(0x0000, "PidNameKeywords",
-                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_MV_STRING8); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_MV_UNICODE); }
         }
 
         /// <summary>

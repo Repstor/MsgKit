@@ -89,6 +89,11 @@ namespace MsgKit.Structures
         internal int MultiValueIndex { get; } = -1;
 
         /// <summary>
+        ///     returns true if this represents a single data entry, belonging to a multi valu property
+        /// </summary>
+        internal bool IsMultiValueData => MultiValueIndex >= 0;
+
+        /// <summary>
         ///     The <see cref="PropertyFlags">property flags</see> that have been set
         ///     as a readonly collection
         /// </summary>
