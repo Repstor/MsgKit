@@ -79,7 +79,7 @@ namespace MsgKit.Streams
             var kind = mapiTag.Name.StartsWith("PidName") ? PropertyKind.Name : PropertyKind.Lid;
             var namedProperty = new NamedProperty
             {
-                NameIdentifier = (ushort) (0x8000 + this.Count),
+                NameIdentifier = kind == PropertyKind.Lid ? mapiTag.Id : (ushort) (0x8000 + this.Count),
                 Guid = mapiTag.Guid,
                 Kind = kind,
                 Name = mapiTag.Name.Replace("PidName", ""),

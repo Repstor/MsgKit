@@ -268,6 +268,11 @@ namespace MsgKit
         public string ConversationTopic { get; set; }
 
         /// <summary>
+        ///     Contains user-specifiable text to be associated with the flag.
+        /// </summary>
+        public string FlagRequest { get; set; }
+
+        /// <summary>
         ///     Gets or sets a valud indicating the message sender's opinion of the sensitivity of a message
         /// </summary>
         public long Sensitiviy { get; set; }
@@ -397,22 +402,25 @@ namespace MsgKit
 
             TopLevelProperties.AddProperty(PropertyTags.PR_CREATION_TIME, CreatedOn.Value.ToUniversalTime());
             TopLevelProperties.AddProperty(PropertyTags.PR_LAST_MODIFICATION_TIME, LastModifiedOn.Value.ToUniversalTime());
-            
 
-            /*if (string.IsNullOrWhiteSpace(BodyRtf) && !string.IsNullOrWhiteSpace(BodyHtml))
+            TopLevelProperties.AddProperty(PropertyTags.PR_BODY_W, BodyText);
+
+            if (!string.IsNullOrEmpty(BodyHtml))
+            {
+                TopLevelProperties.AddProperty(PropertyTags.PR_HTML, BodyHtml);
+                TopLevelProperties.AddProperty(PropertyTags.PR_RTF_IN_SYNC, false);
+            }
+            else if (string.IsNullOrWhiteSpace(BodyRtf) && !string.IsNullOrWhiteSpace(BodyHtml))
             {
                 BodyRtf = Strings.GetEscapedRtf(BodyHtml);
                 BodyRtfCompressed = true;
-            }*/
+            }
 
-            
             if (!string.IsNullOrWhiteSpace(BodyRtf))
             {
                 TopLevelProperties.AddProperty(PropertyTags.PR_RTF_COMPRESSED, new RtfCompressor().Compress(Encoding.ASCII.GetBytes(BodyRtf)));
                 TopLevelProperties.AddProperty(PropertyTags.PR_RTF_IN_SYNC, BodyRtfCompressed);
             }
-
-            TopLevelProperties.AddProperty(PropertyTags.PR_BODY_W, BodyText);
 
             SetSubject();
             TopLevelProperties.AddProperty(PropertyTags.PR_SUBJECT_W, Subject);
@@ -444,7 +452,9 @@ namespace MsgKit
             if (Categories != null && Categories.Any())
                 NamedProperties.AddProperty(NamedPropertyTags.PidNameKeywords, Categories);
                 
-
+            if(!string.IsNullOrWhiteSpace(FlagRequest))
+                NamedProperties.AddProperty(NamedPropertyTags.PidLidFlagRequest, FlagRequest);
+            
             /*if (Categories != null && Categories.Any())
                 NamedProperties.AddProperty(NamedPropertyTags.PidLidCategories, Categories);*/
 

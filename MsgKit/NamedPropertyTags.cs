@@ -3585,6 +3585,18 @@ namespace MsgKit
         }
 
         /// <summary>
+        ///     Contains keywords or categories for the Message object.
+        /// </summary>
+        public static NamedPropertyTag PidLidFlagRequest
+        {
+            get
+            {
+                return new NamedPropertyTag(0x8530, "PidLidFlagRequest",
+                  PropertySets.PSETID_Common, PropertyType.PT_UNICODE);
+            }
+        }
+
+        /// <summary>
         ///     Specifies the most recent author of the file attached to the Document object.
         /// </summary>
         internal static NamedPropertyTag PidNameLastAuthor
