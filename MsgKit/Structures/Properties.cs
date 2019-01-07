@@ -97,9 +97,12 @@ namespace MsgKit.Structures
             {
                 // property tag: A 32-bit value that contains a property type and a property ID. The low-order 16 bits 
                 // represent the property type. The high-order 16 bits represent the property ID.
-                binaryWriter.Write(Convert.ToUInt16(property.Type)); // 2 bytes
-                binaryWriter.Write(Convert.ToUInt16(property.Id)); // 2 bytes
-                binaryWriter.Write(Convert.ToUInt32(property.Flags)); // 4 bytes
+                if (!property.IsMultiValueData)
+                {
+                    binaryWriter.Write(Convert.ToUInt16(property.Type)); // 2 bytes
+                    binaryWriter.Write(Convert.ToUInt16(property.Id)); // 2 bytes
+                    binaryWriter.Write(Convert.ToUInt32(property.Flags)); // 4 bytes
+                }
 
                 switch (property.Type)
                 {
@@ -133,22 +136,32 @@ namespace MsgKit.Structures
                     //case PropertyType.PT_CURRENCY:
                     //    binaryWriter.Write(property.Data);
                     //    break;
-
+                    
                     case PropertyType.PT_UNICODE:
                         // Write the length of the property to the propertiesstream
                         binaryWriter.Write(property.Data.Length + 2);
                         binaryWriter.Write(new byte[4]);
+                        size += property.Data.LongLength;                        
                         storage.AddStream(property.Name).SetData(property.Data);
-                        size += property.Data.LongLength;
                         break;
 
-                    case PropertyType.PT_MV_STRING8:
                     case PropertyType.PT_STRING8:
                         // Write the length of the property to the propertiesstream
                         binaryWriter.Write(property.Data.Length + 1);
                         binaryWriter.Write(new byte[4]);
-                        storage.AddStream(property.Name).SetData(property.Data);
                         size += property.Data.LongLength;
+                        storage.AddStream(property.Name).SetData(property.Data);
+                        break;
+
+                    case PropertyType.PT_MV_STRING8:
+                    case PropertyType.PT_MV_UNICODE:
+                        if (!property.IsMultiValueData)
+                        {
+                            binaryWriter.Write(property.Data.Length);
+                            binaryWriter.Write(new byte[4]);
+                            size += property.Data.LongLength;
+                        }
+                        storage.AddStream(property.Name).SetData(property.Data);
                         break;
 
                     case PropertyType.PT_CLSID:
@@ -188,10 +201,6 @@ namespace MsgKit.Structures
                         break;
 
                     case PropertyType.PT_MV_LONGLONG:
-                        break;
-
-                    case PropertyType.PT_MV_UNICODE:
-                        // PropertyType.PT_MV_TSTRING
                         break;
 
                     case PropertyType.PT_MV_SYSTIME:
@@ -291,8 +300,11 @@ namespace MsgKit.Structures
             
         }
 
-        private PropertyType GetSingleTypeFromMultiValueType(PropertyType multiValueType) =>
-            (PropertyType) Enum.Parse(typeof(PropertyType), multiValueType.ToString().Replace("_MV", ""));
+        private PropertyType GetSingleTypeFromMultiValueType(PropertyType multiValueType)
+        {
+            if (multiValueType == PropertyType.PT_MV_TSTRING) return PropertyType.PT_UNICODE;
+            return (PropertyType)Enum.Parse(typeof(PropertyType), multiValueType.ToString().Replace("_MV", ""));
+        }
 
         byte[] nullTerminator(PropertyType t)
         {

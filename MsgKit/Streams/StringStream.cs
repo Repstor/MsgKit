@@ -154,7 +154,7 @@ namespace MsgKit.Streams
         /// <returns></returns>
         private static uint Get4BytesBoundry(uint length)
         {
-            if (length == 0) return 4;
+            if (length == 0) return 0;
 
             while (length >= 4)
                 length -= 4;
@@ -164,6 +164,13 @@ namespace MsgKit.Streams
 
         #endregion
 
-        internal ushort TotalBytes => (ushort) (4 + Get4BytesBoundry(Length));
+        internal ushort TotalBytes
+        {
+            get
+            {
+                var over = (Length % 4);
+                return (ushort)(Length - over + (over == 0 ? 0 : 4));
+            }
+        }
     }
 }

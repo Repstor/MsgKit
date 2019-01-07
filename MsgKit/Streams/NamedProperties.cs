@@ -30,8 +30,8 @@ using System.Linq;
 using MsgKit.Enums;
 using MsgKit.Structures;
 using OpenMcdf;
-using Force.Crc32;
 using System.Text;
+using MsgKit.Helpers;
 
 namespace MsgKit.Streams
 {
@@ -79,15 +79,14 @@ namespace MsgKit.Streams
             var kind = mapiTag.Name.StartsWith("PidName") ? PropertyKind.Name : PropertyKind.Lid;
             var namedProperty = new NamedProperty
             {
-                NameIdentifier = mapiTag.Id,
+                NameIdentifier = kind == PropertyKind.Lid ? mapiTag.Id : (ushort) (0x8000 + this.Count),
                 Guid = mapiTag.Guid,
                 Kind = kind,
                 Name = mapiTag.Name.Replace("PidName", ""),
                 NameSize = (uint)(kind == PropertyKind.Name ? mapiTag.Name.Length : 0)
             };
 
-            var nameIdeintifier = GenerateNameIdentifier(namedProperty);
-            _topLevelProperties.AddProperty(new PropertyTag(nameIdeintifier, mapiTag.Type, true), obj);
+            _topLevelProperties.AddProperty(new PropertyTag(namedProperty.NameIdentifier, mapiTag.Type), obj);
 
             Add(namedProperty);
         }
@@ -176,25 +175,25 @@ namespace MsgKit.Streams
             {
                 case PropertyKind.Lid:
                     return "__substg1.0_" +
-                           (((4096 + (identifier ^ (guidTarget << 1)) % 0x1F) << 16) | 0x00000102).ToString("X")
+                           (((0x1000 + ((identifier ^ (guidTarget << 1)) % 0x1F)) << 16) | 0x00000102).ToString("X8")
                            .PadLeft(8, '0');
                 case PropertyKind.Name:
                     return "__substg1.0_" +
-                       ((4096 + ((identifier ^ (guidTarget << 1 | 1)) % 0x1F) << 16) | 0x00000102).ToString("X")
-                       .PadLeft(8, '0');
+                           (((0x1000 + ((identifier ^ (guidTarget << 1 | 1)) % 0x1F)) << 16) | 0x00000102).ToString("X8")
+                           .PadLeft(8, '0');
                 default:
                     throw new NotImplementedException();
             }
         }
 
-        internal ushort GenerateNameIdentifier(NamedProperty namedProperty)
+        internal uint GenerateNameIdentifier(NamedProperty namedProperty)
         {
             switch (namedProperty.Kind)
             {
                 case PropertyKind.Lid:
                     return namedProperty.NameIdentifier;
                 case PropertyKind.Name:
-                    return (ushort) Crc32Algorithm.Compute(Encoding.Unicode.GetBytes(namedProperty.Name));
+                    return Crc32Calculator.CalculateCrc32(Encoding.Unicode.GetBytes(namedProperty.Name));
                 default:
                     throw new NotImplementedException();
             }

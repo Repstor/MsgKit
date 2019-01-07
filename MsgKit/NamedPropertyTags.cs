@@ -3581,7 +3581,19 @@ namespace MsgKit
         public static NamedPropertyTag PidNameKeywords
         {
             get { return new NamedPropertyTag(0x0000, "PidNameKeywords",
-                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_MV_STRING8); }
+                    PropertySets.PS_PUBLIC_STRINGS, PropertyType.PT_MV_UNICODE); }
+        }
+
+        /// <summary>
+        ///     Contains keywords or categories for the Message object.
+        /// </summary>
+        public static NamedPropertyTag PidLidFlagRequest
+        {
+            get
+            {
+                return new NamedPropertyTag(0x8530, "PidLidFlagRequest",
+                  PropertySets.PSETID_Common, PropertyType.PT_UNICODE);
+            }
         }
 
         /// <summary>
