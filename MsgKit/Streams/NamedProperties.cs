@@ -76,17 +76,25 @@ namespace MsgKit.Streams
             // Named property field 0000. 0x8000 + property offset
             //_topLevelProperties.AddProperty(new PropertyTag((ushort)(0x8000 + _namedPropertyIndex++), mapiTag.Type), obj);
 
+            var propertyIndex = (ushort)(0x8000 + this.Count);
             var kind = mapiTag.Name.StartsWith("PidName") ? PropertyKind.Name : PropertyKind.Lid;
             var namedProperty = new NamedProperty
             {
-                NameIdentifier = kind == PropertyKind.Lid ? mapiTag.Id : (ushort) (0x8000 + this.Count),
+                NameIdentifier = kind == PropertyKind.Lid ? mapiTag.Id : propertyIndex,
                 Guid = mapiTag.Guid,
                 Kind = kind,
-                Name = mapiTag.Name.Replace("PidName", ""),
+                Name = mapiTag.Name.Replace("PidName", "").Replace("PidLid",""),
                 NameSize = (uint)(kind == PropertyKind.Name ? mapiTag.Name.Length : 0)
             };
 
-            _topLevelProperties.AddProperty(new PropertyTag(namedProperty.NameIdentifier, mapiTag.Type), obj);
+            if(mapiTag.Guid != PropertySets.PS_MAPI 
+                && mapiTag.Guid != PropertySets.PS_PUBLIC_STRINGS
+                && !Guids.Contains(mapiTag.Guid))
+            {
+                Guids.Add(mapiTag.Guid);
+            }
+
+            _topLevelProperties.AddProperty(new PropertyTag(propertyIndex, mapiTag.Type), obj);
 
             Add(namedProperty);
         }
@@ -99,7 +107,7 @@ namespace MsgKit.Streams
                             : (Guids.IndexOf(namedProperty.Guid) + 3));
         }
 
-        private IList<Guid> Guids => this.Select(x => x.Guid).Distinct().ToList();
+        private IList<Guid> Guids = new List<Guid>();
 
         #region WriteProperties
         /// <summary>
@@ -175,7 +183,7 @@ namespace MsgKit.Streams
             {
                 case PropertyKind.Lid:
                     return "__substg1.0_" +
-                           (((0x1000 + ((identifier ^ (guidTarget << 1)) % 0x1F)) << 16) | 0x00000102).ToString("X8")
+                           (((4096 + (identifier ^ (guidTarget << 1)) % 0x1F) << 16) | 0x00000102).ToString("X")
                            .PadLeft(8, '0');
                 case PropertyKind.Name:
                     return "__substg1.0_" +
