@@ -266,9 +266,9 @@ namespace MsgKit.Streams
         /// </summary>
         /// <param name="binaryWriter"></param>
         internal void Write(BinaryWriter binaryWriter)
-        {
+        {            
             binaryWriter.Write((ushort)((GuidIndex << 1) + PropertyKind));
-            binaryWriter.Write(PropertyIndex);
+            binaryWriter.Write(PropertyIndex);   
         }
         #endregion
     }
