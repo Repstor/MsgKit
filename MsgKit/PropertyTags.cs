@@ -2824,7 +2824,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains a bitmask of flags that client applications query to determine the characteristics of a message store.
         /// </summary>
-        internal static PropertyTag PR_STORE_SUPPORT_MASK
+        public static PropertyTag PR_STORE_SUPPORT_MASK
         {
             get { return new PropertyTag(0x340D, PropertyType.PT_LONG); }
         }
