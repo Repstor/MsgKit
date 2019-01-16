@@ -404,6 +404,11 @@ namespace MsgKit
             TopLevelProperties.AddProperty(PropertyTags.PR_LAST_MODIFICATION_TIME, LastModifiedOn.Value.ToUniversalTime());
 
             TopLevelProperties.AddProperty(PropertyTags.PR_BODY_W, BodyText);
+            
+            if(string.IsNullOrEmpty(BodyHtml))
+            {
+                BodyHtml = BodyText.PlainTextToHtml();
+            }
 
             if (!string.IsNullOrEmpty(BodyHtml))
             {

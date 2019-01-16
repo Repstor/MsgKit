@@ -72,5 +72,24 @@ namespace MsgKit.Helpers
             }
         }
         #endregion
+
+        internal static string PlainTextToHtml(this string plainText) =>
+            plainText == null ? null :
+$@"<!DOCTYPE HTML PUBLIC "" -//W3C//DTD HTML 3.2//EN"">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV=""Content-Type"" CONTENT=""text/html; charset=us-ascii"">
+<META NAME=""Generator"" CONTENT=""MsgKit"">
+<TITLE>Plain Text</TITLE>
+</HEAD>
+<BODY>
+<!-- Converted from text/plain format -->
+
+<P><FONT SIZE = 2 >{plainText}<BR>
+</FONT>
+</P>
+
+</BODY>
+</HTML> ";
     }
 }
