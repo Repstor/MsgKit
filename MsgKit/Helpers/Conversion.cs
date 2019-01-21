@@ -24,6 +24,7 @@
 // THE SOFTWARE.
 //
 
+using Ganss.XSS;
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -85,11 +86,27 @@ $@"<!DOCTYPE HTML PUBLIC "" -//W3C//DTD HTML 3.2//EN"">
 <BODY>
 <!-- Converted from text/plain format -->
 
-<P><FONT SIZE = 2 >{plainText}<BR>
+<P><FONT SIZE = 2 >{InnerToHtml(plainText)}<BR>
 </FONT>
 </P>
 
 </BODY>
 </HTML> ";
-    }
+
+        private static string InnerToHtml(string text)
+        {
+            text = text
+            .Replace("&", " &amp;")
+            .Replace("  ", " &nbsp;")
+            .Replace("<", " &lt;")
+            .Replace(">", "&gt;")
+            .Replace("'", "&apos;")
+            .Replace("\"", "&quot;")
+            .Replace("\r\n", "\r")
+            .Replace("\n", "\r")
+            .Replace("\r", "<br>\r\n");
+            
+            return new HtmlSanitizer().Sanitize(text);
+        }
+    }    
 }
