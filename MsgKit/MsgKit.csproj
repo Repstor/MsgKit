@@ -173,7 +173,6 @@
     <Compile Include="Structures\UnsendableRecipients.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="MsgKit.snk" />
     <None Include="packages.config" />
     <None Include="_Documentation\[MS-OXCDATA].pdf" />
