@@ -54,7 +54,7 @@ namespace MsgKit.Helpers
                 case PropertyType.PT_STRING8:
                     return "String";
                 case PropertyType.PT_SYSTIME:
-                    break;
+                    return "SystemTime";
                 case PropertyType.PT_CLSID:
                     break;
                 case PropertyType.PT_SVREID:

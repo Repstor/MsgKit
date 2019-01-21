@@ -554,7 +554,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the date and time the message sender submitted a message.
         /// </summary>
-        internal static PropertyTag PR_CLIENT_SUBMIT_TIME
+        public static PropertyTag PR_CLIENT_SUBMIT_TIME
         {
             get { return new PropertyTag(0x0039, PropertyType.PT_SYSTIME); }
         }
@@ -739,7 +739,7 @@ namespace MsgKit
         /// <summary>
         ///     Contains the date and time a transport provider passed a message to its underlying messaging system.
         /// </summary>
-        internal static PropertyTag PR_PROVIDER_SUBMIT_TIME
+        public static PropertyTag PR_PROVIDER_SUBMIT_TIME
         {
             get { return new PropertyTag(0x0048, PropertyType.PT_SYSTIME); }
         }
