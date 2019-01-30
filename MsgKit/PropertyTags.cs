@@ -1596,7 +1596,7 @@ namespace MsgKit
         /// <remarks>
         ///     These properties should be present on all e-mail messages.
         /// </remarks>
-        internal static PropertyTag PR_INTERNET_MESSAGE_ID_W
+        public static PropertyTag PR_INTERNET_MESSAGE_ID_W
         {
             get { return new PropertyTag(0x1035, PropertyType.PT_UNICODE); }
         }
