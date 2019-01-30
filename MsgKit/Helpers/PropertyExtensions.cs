@@ -140,7 +140,7 @@ namespace MsgKit.Helpers
                 case PropertyType.PT_ACTIONS:
                     throw new NotSupportedException("PT_ACTIONS property type is not supported");
                 case PropertyType.PT_BINARY:
-                    return Encoding.UTF8.GetBytes(value);
+                    return Convert.FromBase64String(value);
                 case PropertyType.PT_MV_SHORT:
                     throw new NotSupportedException("PT_MV_SHORT property type is not supported");
                 case PropertyType.PT_MV_LONG:
