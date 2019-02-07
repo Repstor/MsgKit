@@ -161,7 +161,6 @@ namespace MsgKit
             var rootStorage = CompoundFile.RootStorage;
 
             Class = MessageClass.IPM_Post;
-            MessageSize += Attachments.WriteToStorage(rootStorage);
 
             base.WriteToStorage();
 
